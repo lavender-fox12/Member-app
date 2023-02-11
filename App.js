@@ -1,7 +1,8 @@
 import React from 'react';
-import EmailVerificationScreen from './app/screens/EmailVerificationScreen';
-import PasswordResetScreen from './app/screens/PasswordResetScreen';
+import AuthNavigator from './app/navigation/AuthNavigator';
+
+
 
 export default function App() {
-  return <EmailVerificationScreen />;
+  return <AuthNavigator/>;
 }
