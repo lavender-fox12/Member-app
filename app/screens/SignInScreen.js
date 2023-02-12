@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
+import { useNavigation } from '@react-navigation/native';
 import AppForm from '../components/AppForm';
 import AppFormField from '../components/AppFormField';
 import CustomButton from '../components/customButton';
@@ -17,6 +18,24 @@ const validationSchema = Yup.object().shape({
 });
 
 function SignInScreen({ navigation }) {
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      
+      if (user) {
+        navigation.navigate("Dashboard");
+      }
+    });
+
+    return unsubscribe;
+  }, [])
+  const handleSignIn = (email, password) => {
+    auth.signInWithEmailAndPassword(email,password).then(userCreditials => {
+      const user = userCreditials.user;
+      console.log(`Logged in with ${user.email}`);
+      console.log(user.password)
+    }).catch(error => alert(error.message));
+  }
   return (
     <Screen>
       <View style={styles.imageContainer}>
@@ -25,7 +44,7 @@ function SignInScreen({ navigation }) {
       <View style={styles.container}>
         <AppForm
           initialValues={{ email: '', password: '' }}
-          onSubmit={(values) => console.log(values)}
+          onSubmit={({email, password}) => handleSignIn(email, password)}
           validationSchema={validationSchema}
         >
           <AppFormField
