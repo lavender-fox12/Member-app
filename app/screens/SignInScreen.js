@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
-import { useNavigation } from '@react-navigation/native';
+
 import AppForm from '../components/AppForm';
 import AppFormField from '../components/AppFormField';
 import CustomButton from '../components/customButton';
