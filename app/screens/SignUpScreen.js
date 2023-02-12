@@ -7,6 +7,7 @@ import CustomButton from '../components/customButton';
 import Logo from '../assets/stemeLogo.png';
 import Screen from '../components/Screen';
 import SubmitButton from '../components/submitButton';
+import { auth } from '../navigation/firebase'
 
 import * as Yup from 'yup';
 
@@ -19,6 +20,13 @@ const validationSchema = Yup.object().shape({
 });
 
 function SignUpScreen({ navigation }) {
+  const handleSignUp = (email, password) => {
+    auth.createUserWithEmailAndPassword(email,password).then(userCreditials => {
+      const user = userCreditials.user;
+      console.log(user.email);
+      console.log(user.password)
+    }).catch(error => alert(error.message));
+  }
   return (
     <Screen>
       <View style={styles.imageContainer}>
@@ -27,7 +35,7 @@ function SignUpScreen({ navigation }) {
       <View style={styles.container}>
         <AppForm
           initialValues={{ email: '', password: '', confirmPassword: '' }}
-          onSubmit={(values) => console.log(values)}
+          onSubmit={({email, password}) => handleSignUp(email,password)}
           validationSchema={validationSchema}
         >
           <AppFormField

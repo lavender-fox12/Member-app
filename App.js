@@ -1,8 +1,11 @@
-import React from 'react';
-import AuthNavigator from './app/navigation/AuthNavigator';
-
-
+import React from "react";
+import AuthNavigator from "./app/navigation/AuthNavigator";
+import { NavigationContainer } from '@react-navigation/native';
 
 export default function App() {
-  return <AuthNavigator/>;
+  return (
+    <NavigationContainer>
+      <AuthNavigator />
+    </NavigationContainer>
+  );
 }
