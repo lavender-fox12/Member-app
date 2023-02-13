@@ -23,8 +23,6 @@ function SignUpScreen({ navigation }) {
   const handleSignUp = (email, password) => {
     auth.createUserWithEmailAndPassword(email,password).then(userCreditials => {
       const user = userCreditials.user;
-      console.log(`Signed Up with ${user.email}`);
-      console.log(user.password)
     }).catch(error => alert(error.message));
   }
   return (

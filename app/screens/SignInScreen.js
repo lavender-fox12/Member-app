@@ -28,12 +28,11 @@ function SignInScreen({ navigation }) {
     });
 
     return unsubscribe;
-  }, [])
+  }, []);
+  
   const handleSignIn = (email, password) => {
     auth.signInWithEmailAndPassword(email,password).then(userCreditials => {
       const user = userCreditials.user;
-      console.log(`Logged in with ${user.email}`);
-      console.log(user.password)
     }).catch(error => alert(error.message));
   }
   return (

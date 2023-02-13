@@ -12,10 +12,11 @@ import { auth } from '../navigation/firebase'
 import * as Yup from 'yup';
 
 
-function HomeScreen({ navigation }) {
-    const handleSignOut = (email) => {
+function DashboardScreen({ navigation }) {
+    const handleSignOut = () => {
         auth.signOut().then(() => navigation.navigate("SignIn"))
     }
+   
     return(
         <SafeAreaView>
             <Text>Email: {auth.currentUser?.email}</Text>
@@ -24,6 +25,6 @@ function HomeScreen({ navigation }) {
     )
 }
 
-export default HomeScreen
+export default DashboardScreen
 
 const styles = StyleSheet.create({});

@@ -15,7 +15,7 @@ const AuthNavigator = () => (
     >
       <Stack.Screen name="SignIn" component={SignInScreen} />
       <Stack.Screen name="SignUp" component={SignUpScreen} />
-      <Stack.Screen name ="Dashboard" component={DashboardScreen}/>
+      <Stack.Screen name="Dashboard" component={DashboardScreen}/>
     </Stack.Navigator>
 );
 
