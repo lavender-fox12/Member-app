@@ -1,16 +1,12 @@
 import React, { useEffect } from 'react';
 import { Text, View, StyleSheet, Image, SafeAreaView, useWindowDimensions} from 'react-native';
 
-import AppForm from '../components/AppForm';
-import AppFormField from '../components/AppFormField';
-import CustomButton from '../components/customButton';
-import Logo from '../assets/stemeLogo.png';
 import Screen from '../components/Screen';
 import TempProfilePhoto from '../assets/tempProfilePhoto.png'
-import SubmitButton from '../components/submitButton';
+import Icons from 'react-native-vector-icons/Octicons';
+import CustomButton from '../components/customButton';
 import { auth } from '../navigation/firebase'
 
-import * as Yup from 'yup';
 
 
 
@@ -20,6 +16,18 @@ import * as Yup from 'yup';
 function DashboardScreen({ navigation }) {
     const handleSignOut = () => {
         auth.signOut().then(() => navigation.navigate("SignIn"))
+    }
+    const handleHomeIcon = () => {
+        navigation.navigate("Dashboard");
+    }
+    const handleChallengesIcon = () => {
+        navigation.navigate("Challenges");
+    }
+    const handleCalendarIcon = () => {
+        navigation.navigate("Calendar");
+    }
+    const handleSocialIcon = () => {
+        navigation.navigate("Socials")
     }
     const {height} = useWindowDimensions();
    
@@ -40,9 +48,13 @@ function DashboardScreen({ navigation }) {
             <View style={styles.paddedBox}>
                 <Text style={styles.text}> {"Badge Here                            Planet Here"} </Text>
             </View>
-            <View>
-                <Text style={styles.text}> {"                 Bottom Icons Go Here"} </Text>
+            <View style={styles.navigationFooter}>
+                <Icons onPress={handleHomeIcon} style={styles.icons} name="home" size={30} color={"#fff"}/>
+                <Icons onPress={handleCalendarIcon}style={styles.icons} name="calendar" size={30} color={"#fff"}/>
+                <Icons onPress={handleChallengesIcon} style={styles.icons} name="list-ordered" size={30} color={"#fff"}/>
+                <Icons onPress={handleSocialIcon} style={styles.icons} name="people" size={30} color={"#fff"}/>
             </View>
+            <CustomButton text="Sign Out" onPress={handleSignOut} type="PRIMARY"/>
         </Screen>
     );
 }
@@ -86,5 +98,13 @@ const styles = StyleSheet.create({
     stats: {
         alignItems: 'center',
         margin: 20,
+    }, 
+    navigationFooter: {
+        flexDirection: 'row',
+        margin: 20,
+    },
+    icons: {
+        marginLeft: 20,
+        marginRight: 20,
     }
 });

@@ -7,11 +7,24 @@ import Screen from '../components/Screen';
 import SubmitButton from '../components/submitButton';
 import CustomButton from '../components/customButton';
 import TransparentButton from '../components/transparentButton';
+import Icons from 'react-native-vector-icons/Octicons';
 
 import * as Yup from 'yup';
 
-function ChallengesScreen(props) {
+function ChallengesScreen({navigation}) {
   const name = 'Sean Kim';
+  const handleHomeIcon = () => {
+      navigation.navigate("Dashboard");
+  }
+  const handleChallengesIcon = () => {
+      navigation.navigate("Challenges");
+  }
+  const handleCalendarIcon = () => {
+      navigation.navigate("Calendar");
+  }
+  const handleSocialIcon = () => {
+      navigation.navigate("Socials")
+  }
   return (
     <Screen>
       <View style={styles.profilePictureBorder}>
@@ -27,7 +40,12 @@ function ChallengesScreen(props) {
       <TransparentButton text = 'Level-Based Challenges' text2 = 'Complete these challenges at any time!'/>
       {/* Should run backend code to switch to Level Based Challenges Page*/}
 
-
+      <View style={styles.navigationFooter}>
+                <Icons onPress={handleHomeIcon} style={styles.icons} name="home" size={30} color={"#fff"}/>
+                <Icons onPress={handleCalendarIcon}style={styles.icons} name="calendar" size={30} color={"#fff"}/>
+                <Icons onPress={handleChallengesIcon} style={styles.icons} name="list-ordered" size={30} color={"#fff"}/>
+                <Icons onPress={handleSocialIcon} style={styles.icons} name="people" size={30} color={"#fff"}/>
+      </View>
 
     </Screen>
   );
@@ -85,4 +103,12 @@ const styles = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
   },
+  navigationFooter: {
+    flexDirection: 'row',
+    margin: 20,
+  },
+  icons: {
+      marginLeft: 20,
+      marginRight: 20,
+  }
 });

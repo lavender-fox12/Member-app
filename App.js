@@ -6,7 +6,7 @@ import DashboardScreen from "./app/screens/DashboardScreen";
 export default function App() {
   return (
     <NavigationContainer>
-      <DashboardScreen />
+      <AuthNavigator />
     </NavigationContainer>
   );
 }
