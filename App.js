@@ -1,13 +1,12 @@
 import React from "react";
 import AuthNavigator from "./app/navigation/AuthNavigator";
-import ChallengesScreen from "./app/screens/ChallengesScreen"
 import { NavigationContainer } from '@react-navigation/native';
-import EmailVerificationScreen from "./app/screens/EmailVerificationScreen"
+import DashboardScreen from "./app/screens/DashboardScreen";
 
 export default function App() {
   return (
     <NavigationContainer>
-      <AuthNavigator />
+      <DashboardScreen />
     </NavigationContainer>
   );
 }
