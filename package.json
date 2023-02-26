@@ -23,7 +23,7 @@
     "react-native-screens": "~3.18.0",
     "yup": "^0.32.11",
     "expo-constants": "~14.0.2",
-    "react-native-calendars": "~1.1291.1",
+    "react-native-calendars": "~1.1291.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
