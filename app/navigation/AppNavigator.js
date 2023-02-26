@@ -1,3 +1,4 @@
+import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icons from 'react-native-vector-icons/Octicons';
 

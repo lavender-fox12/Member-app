@@ -7,7 +7,7 @@ import CustomButton from '../components/customButton';
 import Logo from '../assets/stemeLogo.png';
 import Screen from '../components/Screen';
 import SubmitButton from '../components/submitButton';
-import { auth } from '../navigation/firebase'
+import { auth } from '../navigation/firebase';
 
 import * as Yup from 'yup';
 
@@ -21,19 +21,22 @@ const validationSchema = Yup.object().shape({
 
 function SignUpScreen({ navigation }) {
   const handleSignUp = (email, password) => {
-    auth.createUserWithEmailAndPassword(email,password).then(userCreditials => {
-      const user = userCreditials.user;
-    }).catch(error => alert(error.message));
-  }
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((userCreditials) => {
+        const user = userCreditials.user;
+      })
+      .catch((error) => alert(error.message));
+  };
   return (
-    <Screen>
+    <Screen style={styles.screen}>
       <View style={styles.imageContainer}>
         <Image source={Logo} style={styles.logo} resizeMode="contain" />
       </View>
       <View style={styles.container}>
         <AppForm
           initialValues={{ email: '', password: '', confirmPassword: '' }}
-          onSubmit={({email, password}) => handleSignUp(email,password)}
+          onSubmit={({ email, password }) => handleSignUp(email, password)}
           validationSchema={validationSchema}
         >
           <AppFormField
@@ -96,5 +99,9 @@ const styles = StyleSheet.create({
   createAccount: {
     position: 'relative',
     top: 30,
+  },
+  screen: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
