@@ -12,6 +12,7 @@ import TempProfilePhoto from '../assets/tempProfilePhoto.png';
 import CustomButton from '../components/customButton';
 import { auth } from '../navigation/firebase';
 
+
 function DashboardScreen({ navigation }) {
   const handleSignOut = () => {
     auth.signOut().then(() => navigation.navigate('SignIn'));
