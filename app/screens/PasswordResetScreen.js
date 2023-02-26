@@ -17,7 +17,7 @@ const validationSchema = Yup.object().shape({
 
 function PasswordResetScreen(props) {
   return (
-    <Screen>
+    <Screen style={styles.screen}>
       <View style={styles.profilePictureBorder}>
         <Image
           style={styles.profilePicture}
@@ -66,5 +66,9 @@ const styles = StyleSheet.create({
   profilePicture: {
     maxHeight: 120,
     maxWidth: 120,
+  },
+  screen: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

@@ -22,7 +22,7 @@ function EmailVerificationScreen(props) {
     email +
     ' to verify your email address and activate your account. The code will expire in 24 hours.';
   return (
-    <Screen>
+    <Screen style={styles.screen}>
       <View style={styles.profilePictureBorder}>
         <Image
           style={styles.stemeLogo}
@@ -79,5 +79,9 @@ const styles = StyleSheet.create({
     align: 'left',
     paddingVertical: 20,
     textAlign: 'center',
+  },
+  screen: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

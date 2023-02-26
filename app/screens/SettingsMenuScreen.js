@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text, Image } from 'react-native';
+import { View, StyleSheet, Image } from 'react-native';
 
 import CustomButton from '../components/customButton';
 import MenuButton from '../components/MenuButton';
@@ -7,7 +7,7 @@ import Screen from '../components/Screen';
 
 function SettingsMenuScreen(props) {
   return (
-    <Screen>
+    <Screen style={styles.screen}>
       <View style={styles.profilePictureBorder}>
         <Image
           style={styles.profilePicture}
@@ -44,5 +44,9 @@ const styles = StyleSheet.create({
   profilePicture: {
     maxHeight: 120,
     maxWidth: 120,
+  },
+  screen: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

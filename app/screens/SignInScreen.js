@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Image } from 'react-native';
 
 import AppForm from '../components/AppForm';
 import AppFormField from '../components/AppFormField';
@@ -36,7 +36,7 @@ function SignInScreen({ navigation }) {
       .catch((error) => alert(error.message));
   };
   return (
-    <Screen>
+    <Screen style={styles.screen}>
       <View style={styles.imageContainer}>
         <Image source={Logo} style={styles.logo} resizeMode="contain" />
       </View>
@@ -98,5 +98,9 @@ const styles = StyleSheet.create({
   createAccount: {
     position: 'relative',
     top: 80,
+  },
+  screen: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
