@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {
   Image,
   StyleSheet,
+  Text,
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
@@ -40,7 +41,8 @@ function AppImagePicker({ style }) {
 
   return (
     <TouchableWithoutFeedback onPress={pickImage}>
-      <View style={styles.container}>
+      <View style={[style, styles.container]}>
+        <Text>Please</Text>
         {image && <Image source={{ uri: image }} style={style} />}
       </View>
     </TouchableWithoutFeedback>
@@ -51,7 +53,10 @@ export default AppImagePicker;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    backgroundColor: 'transparent',
+    borderColor: 'white',
+    borderWidth: 3,
+    borderRadius: 20,
     alignItems: 'center',
     justifyContent: 'center',
   },
