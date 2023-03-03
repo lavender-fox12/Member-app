@@ -9,7 +9,7 @@ import {
 
 import * as ImagePicker from 'expo-image-picker';
 
-function AppImagePicker({ style }) {
+function AppImagePicker({ height, width }) {
   const [image, setImage] = useState();
 
   const requestPermission = async () => {
@@ -41,9 +41,38 @@ function AppImagePicker({ style }) {
 
   return (
     <TouchableWithoutFeedback onPress={pickImage}>
-      <View style={[style, styles.container]}>
-        <Text>Please</Text>
-        {image && <Image source={{ uri: image }} style={style} />}
+      <View
+        style={{
+          alignItems: 'center',
+          backgroundColor: 'transparent',
+          borderColor: 'white',
+          borderRadius: width / 2,
+          borderWidth: 3,
+          height: height,
+          justifyContent: 'center',
+          width: width,
+        }}
+      >
+        {image && <Image source={{ uri: image }} />}
+        <View
+          style={{
+            alignItems: 'center',
+            borderRadius: width / 2,
+            backgroundColor: 'transparent',
+
+            flex: 1,
+            height: height,
+            justifyContent: 'space-around',
+            position: 'absolute',
+            width: width,
+          }}
+        >
+          {!image && <Text style={styles.textHeading}>Profile Picture</Text>}
+          <View style={{ position: '' }}>
+            <Text style={styles.text}>Change</Text>
+            <Text style={styles.text}>Picture</Text>
+          </View>
+        </View>
       </View>
     </TouchableWithoutFeedback>
   );
@@ -52,12 +81,21 @@ function AppImagePicker({ style }) {
 export default AppImagePicker;
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: 'transparent',
-    borderColor: 'white',
-    borderWidth: 3,
-    borderRadius: 20,
+  textHeading: {
+    color: '#fff',
+    fontSize: 35,
+  },
+  text: {
+    color: '#fff',
+    fontSize: 15,
+    textTransform: 'uppercase',
+  },
+  textContainer: {
+    position: 'absolute',
+    justifyContent: 'space-around',
     alignItems: 'center',
-    justifyContent: 'center',
+    // backgroundColor: 'red',
+    flex: 1,
+    overflow: 'hidden',
   },
 });

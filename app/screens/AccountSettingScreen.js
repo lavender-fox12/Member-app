@@ -9,11 +9,9 @@ import Screen from '../components/Screen';
 function AccountSettingScreen(props) {
   return (
     <Screen style={styles.screen}>
-      <AppImagePicker style={styles.image}>
+      <AppImagePicker width={200} height={200}>
         <Text style={styles.text}>Profile Picture</Text>{' '}
       </AppImagePicker>
-      <Text>Please</Text>
-      <Text>Please</Text>
     </Screen>
   );
 }
