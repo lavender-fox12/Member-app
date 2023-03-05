@@ -11,11 +11,13 @@ import Screen from '../components/Screen';
 import TempProfilePhoto from '../assets/tempProfilePhoto.png';
 import CustomButton from '../components/customButton';
 import { auth } from '../navigation/firebase';
+import {signOut} from "firebase/auth";
 
 
 function DashboardScreen({ navigation }) {
-  const handleSignOut = () => {
-    auth.signOut().then(() => navigation.navigate('SignIn'));
+  const handleSignOut = async () => {
+    await signOut(auth);
+    navigation.navigate("SignIn");
   };
 
   const { height } = useWindowDimensions();

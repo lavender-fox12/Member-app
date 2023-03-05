@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, Image } from 'react-native';
 
 import AppForm from '../components/AppForm';
@@ -8,6 +8,7 @@ import Logo from '../assets/stemeLogo.png';
 import Screen from '../components/Screen';
 import SubmitButton from '../components/submitButton';
 import { auth } from '../navigation/firebase';
+import { onAuthStateChanged, signInWithEmailandPassword } from "firebase/auth";
 
 import * as Yup from 'yup';
 
@@ -17,24 +18,30 @@ const validationSchema = Yup.object().shape({
 });
 
 function SignInScreen({ navigation }) {
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        navigation.navigate('AppNavigator');
-      }
-    });
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChanged((user) => {
+  //     if (user) {
+  //       navigation.navigate('AppNavigator');
+  //     }
+  //   });
 
-    return unsubscribe;
-  }, []);
+  //   return unsubscribe;
+  // }, []);
+  const [user, setUser] = useState({});
+  onAuthStateChanged(auth, (user) => {
 
-  const handleSignIn = (email, password) => {
-    auth
-      .signInWithEmailAndPassword(email, password)
-      .then((userCreditials) => {
-        const user = userCreditials.user;
-      })
-      .catch((error) => alert(error.message));
+    if (user) {
+      navigation.navigate('AppNavigator');
+    }
+  })
+  const handleSignIn = async (email, password) => {
+    try {
+      const user = await signInWithEmailandPassword(auth, email, password);
+    } catch (error) {
+      console.log(error.message);
+    }
   };
+
   return (
     <Screen style={styles.screen}>
       <View style={styles.imageContainer}>

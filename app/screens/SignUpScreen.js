@@ -8,7 +8,7 @@ import Logo from '../assets/stemeLogo.png';
 import Screen from '../components/Screen';
 import SubmitButton from '../components/submitButton';
 import { auth } from '../navigation/firebase';
-
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
@@ -20,13 +20,14 @@ const validationSchema = Yup.object().shape({
 });
 
 function SignUpScreen({ navigation }) {
-  const handleSignUp = (email, password) => {
-    auth
-      .createUserWithEmailAndPassword(email, password)
-      .then((userCreditials) => {
-        const user = userCreditials.user;
-      })
-      .catch((error) => alert(error.message));
+  const handleSignUp = async (email, password) => {
+    try {
+      const user = await createUserWithEmailAndPassword(auth, email, password);
+      console.log(user);
+    } catch (error) {
+      console.log(error.message);
+    }
+    
   };
   return (
     <Screen style={styles.screen}>
