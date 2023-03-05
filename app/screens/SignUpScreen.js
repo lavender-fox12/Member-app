@@ -7,8 +7,10 @@ import CustomButton from '../components/customButton';
 import Logo from '../assets/stemeLogo.png';
 import Screen from '../components/Screen';
 import SubmitButton from '../components/submitButton';
-import { auth } from '../navigation/firebase';
+import { auth, db } from '../navigation/firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { ref, set } from 'firebase/database';
+
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
@@ -20,10 +22,21 @@ const validationSchema = Yup.object().shape({
 });
 
 function SignUpScreen({ navigation }) {
+  const writeUserData = function (username, email, imageUrl) {
+    const reference = ref(db, 'users/' + email); // User based on email
+
+    set(reference , {
+      username: username,
+      email: email,
+      profile_picture: imageUrl
+    });
+  }
   const handleSignUp = async (email, password) => {
     try {
       const user = await createUserWithEmailAndPassword(auth, email, password);
       console.log(user);
+      // Registering a user to the database
+      writeUserData("N/A", email, "#") // User will be able to choose a username later, set to N/A for now
     } catch (error) {
       console.log(error.message);
     }
