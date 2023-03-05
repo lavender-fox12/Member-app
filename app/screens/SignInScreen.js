@@ -8,7 +8,7 @@ import Logo from '../assets/stemeLogo.png';
 import Screen from '../components/Screen';
 import SubmitButton from '../components/submitButton';
 import { auth } from '../navigation/firebase';
-import { onAuthStateChanged, signInWithEmailandPassword } from "firebase/auth";
+import { onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
 
 import * as Yup from 'yup';
 
@@ -18,25 +18,20 @@ const validationSchema = Yup.object().shape({
 });
 
 function SignInScreen({ navigation }) {
-  // useEffect(() => {
-  //   const unsubscribe = onAuthStateChanged((user) => {
-  //     if (user) {
-  //       navigation.navigate('AppNavigator');
-  //     }
-  //   });
-
-  //   return unsubscribe;
-  // }, []);
   const [user, setUser] = useState({});
   onAuthStateChanged(auth, (user) => {
-
     if (user) {
       navigation.navigate('AppNavigator');
     }
-  })
+  });
   const handleSignIn = async (email, password) => {
     try {
-      const user = await signInWithEmailandPassword(auth, email, password);
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
     } catch (error) {
       console.log(error.message);
     }

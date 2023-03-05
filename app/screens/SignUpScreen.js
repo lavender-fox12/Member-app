@@ -27,7 +27,6 @@ function SignUpScreen({ navigation }) {
     } catch (error) {
       console.log(error.message);
     }
-    
   };
   return (
     <Screen style={styles.screen}>
