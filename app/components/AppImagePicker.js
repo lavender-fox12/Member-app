@@ -44,22 +44,29 @@ function AppImagePicker({ height, width }) {
       <View
         style={{
           alignItems: 'center',
-          backgroundColor: 'transparent',
           borderColor: 'white',
           borderRadius: width / 2,
-          borderWidth: 3,
+          borderWidth: 4,
           height: height,
           justifyContent: 'center',
           width: width,
         }}
       >
-        {image && <Image source={{ uri: image }} />}
+        {image && (
+          <Image
+            style={{
+              height: height - 5,
+              width: width - 5,
+              borderRadius: width / 2,
+            }}
+            source={{ uri: image }}
+          />
+        )}
         <View
           style={{
             alignItems: 'center',
             borderRadius: width / 2,
             backgroundColor: 'transparent',
-
             flex: 1,
             height: height,
             justifyContent: 'space-around',
@@ -68,7 +75,7 @@ function AppImagePicker({ height, width }) {
           }}
         >
           {!image && <Text style={styles.textHeading}>Profile Picture</Text>}
-          <View style={{ position: '' }}>
+          <View style={styles.textContainer}>
             <Text style={styles.text}>Change</Text>
             <Text style={styles.text}>Picture</Text>
           </View>
@@ -81,21 +88,17 @@ function AppImagePicker({ height, width }) {
 export default AppImagePicker;
 
 const styles = StyleSheet.create({
-  textHeading: {
-    color: '#fff',
-    fontSize: 35,
-  },
   text: {
     color: '#fff',
     fontSize: 15,
-    textTransform: 'uppercase',
   },
   textContainer: {
     position: 'absolute',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    // backgroundColor: 'red',
-    flex: 1,
-    overflow: 'hidden',
+    top: 130,
+  },
+  textHeading: {
+    color: '#fff',
+    fontSize: 35,
+    paddingBottom: 60,
   },
 });
