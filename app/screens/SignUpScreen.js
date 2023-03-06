@@ -22,8 +22,8 @@ const validationSchema = Yup.object().shape({
 });
 
 function SignUpScreen({ navigation }) {
-  const writeUserData = function (username, email, imageUrl) {
-    const reference = ref(db, 'users/' + email); // User based on email
+  const writeUserData = function (userUID ,username, email, imageUrl) {
+    const reference = ref(db, 'users/' + userUID); // User based on email
 
     set(reference , {
       username: username,
@@ -36,11 +36,15 @@ function SignUpScreen({ navigation }) {
       const user = await createUserWithEmailAndPassword(auth, email, password);
       console.log(user);
       // Registering a user to the database
-      writeUserData("N/A", email, "#") // User will be able to choose a username later, set to N/A for now
+       
     } catch (error) {
       console.log(error.message);
     }
+    // User will be able to choose a username later, set to N/A for now
+    console.log(`This is user UID: ${user.uid}` ) ; 
+    writeUserData(user.uid, "N/A", email, "#");
   };
+  writeUserData("UID", "N/A", "email", "#");
   return (
     <Screen style={styles.screen}>
       <View style={styles.imageContainer}>
