@@ -60,7 +60,7 @@ function SignInScreen({ navigation }) {
             autoCapitalize="none"
             autoCorrect={false}
             name="password"
-            placeholder="password"
+            placeholder="Password"
             secureTextEntry
             textContentType="password"
           />
@@ -98,8 +98,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   createAccount: {
-    position: 'relative',
-    top: 80,
+    position: 'absolute',
+    bottom: "-20%",
   },
   screen: {
     justifyContent: 'center',

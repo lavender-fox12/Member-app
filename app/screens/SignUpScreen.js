@@ -82,7 +82,6 @@ function SignUpScreen({ navigation }) {
           />
           <SubmitButton text={'SIGN UP'} />
         </AppForm>
-        <CustomButton text={'Forgot your password?'} type="TERTIARY" />
         <CustomButton
           style={styles.createAccount}
           text={'Have an account? Log in '}
@@ -114,8 +113,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   createAccount: {
-    position: 'relative',
-    top: 30,
+    position: 'absolute',
+    bottom: "-20%",
   },
   screen: {
     justifyContent: 'center',
