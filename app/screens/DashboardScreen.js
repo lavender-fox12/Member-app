@@ -12,6 +12,7 @@ import TempProfilePhoto from '../assets/tempProfilePhoto.png';
 import CustomButton from '../components/customButton';
 import { auth } from '../navigation/firebase';
 import {signOut} from "firebase/auth";
+import Icons from 'react-native-vector-icons/Octicons';
 
 
 function DashboardScreen({ navigation }) {
@@ -27,6 +28,7 @@ function DashboardScreen({ navigation }) {
       <View style={styles.header}>
         <Text style={styles.text}> {'John Doe'} </Text>
         <Text style={styles.text}> {'Dashboard'} </Text>
+        <Icons onClick={navigation.navigate("SettingsMenu")} style={styles.settingsIcon} name="gear" size={height * 0.05} color={'#fff'} />
       </View>
       <Image
         source={TempProfilePhoto}
@@ -72,6 +74,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     margin: 20,
   },
+  header: {
+    flex: 1,
+    flexDirection: 'row',
+  },
   profilePictureBorder: {
     borderWidth: 3,
     borderColor: '#4881CB',
@@ -104,4 +110,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     margin: 20,
   },
+  settingsIcon: {
+
+  }
 });
