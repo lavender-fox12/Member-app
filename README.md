@@ -1,8 +1,8 @@
 (WIP)
 
 Instructions for initializing React Native project:
-    -1. If instructions unclear or don't work, message team leads or Google it
-    0. Install node js
+    1. If instructions unclear or don't work, message team leads or Google it
+    1. Install node js
     1. Install node package manager (npm)
     2. Navigate to the Member-app directory
     3. Run npm install
