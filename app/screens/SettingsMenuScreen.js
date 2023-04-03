@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     overflow: 'hidden',
     marginBottom: 80,
+    marginTop: 100,
   },
   profilePicture: {
     maxHeight: 120,

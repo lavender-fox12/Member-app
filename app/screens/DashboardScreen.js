@@ -5,20 +5,19 @@ import {
   StyleSheet,
   Image,
   useWindowDimensions,
+  TouchableWithoutFeedback,
 } from 'react-native';
 
 import Screen from '../components/Screen';
 import TempProfilePhoto from '../assets/tempProfilePhoto.png';
 import CustomButton from '../components/customButton';
 import { auth } from '../navigation/firebase';
-import {signOut} from "firebase/auth";
-import Icons from 'react-native-vector-icons/Octicons';
-
+import { signOut } from 'firebase/auth';
 
 function DashboardScreen({ navigation }) {
   const handleSignOut = async () => {
     await signOut(auth);
-    navigation.navigate("SignIn");
+    navigation.navigate('SignIn');
   };
 
   const { height } = useWindowDimensions();
@@ -28,17 +27,20 @@ function DashboardScreen({ navigation }) {
       <View style={styles.header}>
         <Text style={styles.text}> {'John Doe'} </Text>
         <Text style={styles.text}> {'Dashboard'} </Text>
-        <Icons onClick={navigation.navigate("SettingsMenu")} style={styles.settingsIcon} name="gear" size={height * 0.05} color={'#fff'} />
+        <TouchableWithoutFeedback
+          onPress={() => navigation.navigate('Settings')}
+        >
+          <Image
+            source={TempProfilePhoto}
+            style={[
+              styles.profilePicture,
+              { height: height * 0.08 },
+              { width: height * 0.08 },
+              { borderRadius: height * 0.045 },
+            ]}
+          />
+        </TouchableWithoutFeedback>
       </View>
-      <Image
-        source={TempProfilePhoto}
-        style={[
-          styles.profilePicture,
-          { height: height * 0.08 },
-          { width: height * 0.08 },
-          { borderRadius: height * 0.045 },
-        ]}
-      />
       <View style={styles.stats}>
         <Text style={styles.text}>
           {' '}
@@ -61,7 +63,6 @@ function DashboardScreen({ navigation }) {
           {'Badge Here                            Planet Here'}{' '}
         </Text>
       </View>
-
       <CustomButton text="Sign Out" onPress={handleSignOut} type="PRIMARY" />
     </Screen>
   );
@@ -106,11 +107,9 @@ const styles = StyleSheet.create({
 
     textAlign: 'center',
   },
+
   stats: {
     alignItems: 'center',
     margin: 20,
   },
-  settingsIcon: {
-
-  }
 });

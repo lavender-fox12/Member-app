@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
   },
   createAccount: {
     position: 'absolute',
-    bottom: "-20%",
+    bottom: '-20%',
   },
   screen: {
     justifyContent: 'center',
