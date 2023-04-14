@@ -14,7 +14,7 @@ import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label('Email'),
-  password: Yup.string().required().min(4).label('Password'),
+  password: Yup.string().required().min(6).label('Password'),
 });
 
 function SignInScreen({ navigation }) {
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
   },
   createAccount: {
     position: 'absolute',
-    bottom: "-20%",
+    bottom: '-20%',
   },
   screen: {
     justifyContent: 'center',
