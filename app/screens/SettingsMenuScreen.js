@@ -5,7 +5,7 @@ import CustomButton from '../components/customButton';
 import MenuButton from '../components/MenuButton';
 import Screen from '../components/Screen';
 
-function SettingsMenuScreen(props) {
+function SettingsMenuScreen({ navigation }) {
   return (
     <Screen style={styles.screen}>
       <View style={styles.profilePictureBorder}>
@@ -14,7 +14,13 @@ function SettingsMenuScreen(props) {
           source={require('../assets/tempProfilePhoto.png')}
         />
       </View>
-      <MenuButton icon={'account'} text="Account" color={'#fff'} size={30} />
+      <MenuButton
+        onPress={() => navigation.navigate('Account')}
+        icon={'account'}
+        text="Account"
+        color={'#fff'}
+        size={30}
+      />
       <MenuButton
         icon={'account-question-outline'}
         color={'#fff'}

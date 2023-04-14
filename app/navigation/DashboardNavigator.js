@@ -1,8 +1,8 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+import SettingsNavigator from './SettingsNavigator';
 import DashboardScreen from '../screens/DashboardScreen';
-import SettingsMenuScreen from '../screens/SettingsMenuScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -15,13 +15,13 @@ const DashboardNavigator = () => (
     />
     <Stack.Screen
       options={{
-        headerShown: true,
+        headerShown: false,
         headerTransparent: true,
         headerTintColor: 'white',
         headerTitleAlign: 'center',
       }}
       name="Settings"
-      component={SettingsMenuScreen}
+      component={SettingsNavigator}
     />
   </Stack.Navigator>
 );
