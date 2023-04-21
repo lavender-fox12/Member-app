@@ -3,11 +3,8 @@ import AuthNavigator from './app/navigation/AuthNavigator';
 import { NavigationContainer } from '@react-navigation/native';
 import Badge from './app/components/Badge';
 import Screen from './app/components/Screen';
+import BadgesScreen from './app/screens/BadgesScreen';
 
 export default function App() {
-  return (
-    <Screen>
-      <Badge />
-    </Screen>
-  );
+  return <BadgesScreen />;
 }
