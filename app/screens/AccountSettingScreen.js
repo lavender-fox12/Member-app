@@ -6,7 +6,7 @@ import AppImagePicker from '../components/AppImagePicker';
 import MenuButton from '../components/MenuButton';
 import Screen from '../components/Screen';
 
-function AccountSettingScreen(props) {
+function AccountSettingScreen({navigation}) {
   return (
     <Screen style={styles.screen}>
       <AppImagePicker width={200} height={200}>
@@ -20,6 +20,7 @@ function AccountSettingScreen(props) {
         text={'Reset Password'}
         type={'SECONDARY'}
         style={styles.button}
+        onPress={() => navigation.navigate('PasswordReset')}
       />
       <MenuButton
         text={'Edit Profile'}
