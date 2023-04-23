@@ -20,7 +20,7 @@ const validationSchema = Yup.object().shape({
 
 function EditProfileScreen(props) {
   return (
-    <Screen>
+    <Screen style={styles.screen}>
       <AppForm
         initialValues={{
           name: '',
@@ -58,4 +58,8 @@ function EditProfileScreen(props) {
 
 export default EditProfileScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  screen: {
+    paddingTop: 120,
+  },
+});

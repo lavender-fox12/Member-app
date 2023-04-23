@@ -68,7 +68,8 @@ const styles = StyleSheet.create({
     maxWidth: 120,
   },
   screen: {
-    justifyContent: 'center',
     alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: 130,
   },
 });
