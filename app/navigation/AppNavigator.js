@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icons from 'react-native-vector-icons/Octicons';
 
 import CalendarScreen from '../screens/CalendarScreen';
-import ChallengesScreen from '../screens/ChallengesScreen';
+import ChallengesNavigator from '../navigation/ChallengesNavigator';
 import DashboardNavigator from './DashboardNavigator';
 import SocialsScreen from '../screens/SocialsScreen';
 
@@ -43,7 +43,7 @@ const AppNavigator = () => (
     />
     <Tab.Screen
       name="Challenges"
-      component={ChallengesScreen}
+      component={ChallengesNavigator}
       options={{
         tabBarIcon: ({ size }) => (
           <Icons name="list-ordered" size={size} color={'#fff'} />
