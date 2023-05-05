@@ -9,7 +9,7 @@ import Screen from '../components/Screen';
 import countryList from '../components/countries';
 import SubmitButton from '../components/submitButton';
 
-const gender = ['Male', 'Female'];
+const gender = ['Male', 'Female', 'Decline to answer'];
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().label('Name'),
@@ -36,6 +36,7 @@ function EditProfileScreen(props) {
           name={'name'}
           placeholder="Full Name"
         />
+        {/* Add first name and last name */}
         <AppFormField
           autoCapitalize="none"
           autoCorrect={false}

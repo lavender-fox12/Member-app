@@ -8,7 +8,7 @@ function ChallengesScreen({ navigation }) {
   const name = 'Sean Kim';
 
   return (
-    <Screen>
+    <Screen style={styles.screen}>
       <View style={styles.profilePictureBorder}>
         <Image
           style={styles.profilePicture}
@@ -82,5 +82,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: 'white',
     textAlign: 'center',
+  },
+  screen: {
+    paddingTop: 120,
   },
 });
