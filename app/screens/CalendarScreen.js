@@ -5,7 +5,7 @@ import Screen from '../components/Screen';
 import TempProfilePhoto from '../assets/tempProfilePhoto.png';
 
 
-const CalendarScreen = () => {
+function CalendarScreen (props) {
   
   LocaleConfig.locales['en'] = {
     monthNames: [
@@ -57,140 +57,138 @@ const CalendarScreen = () => {
   }, [selected]);
 
   return (
-    <Screen>
-
-    
-    
+    <Screen style={styles.screen}>
       <View style={[{position: 'absolute'}, {marginTop: 21}, {marginRight: 23}, {right: 0}, {height: height*0.075}, {width: height*0.075}, {borderRadius: height * (0.095/2)}, styles.profilePictureBorder]}>
         <Image source = {TempProfilePhoto} style ={[styles.profilePicture, {height: height * 0.062}, {width: height * 0.062}, {borderRadius: height*0.045}]}/>   
       </View>
       
-      <View style={[styles.root, {height: height}]}>
+      <View style={[styles.root, {height: height}, {position: 'absolute'}]}>
         <Text style={styles.name}>{"John Doe"}</Text>
         <Text style={styles.header}>{"Calendar"}</Text>
-        <CalendarProvider date="" style={{maxHeight: 320}}>
-          <CalendarList
-            style={{
-              height: 350,
-              width: width-10,
-            }}
+        <View>
+          <CalendarProvider date="" style={{maxHeight: 340}}>
+            <CalendarList
+              style={{
+                height: 350,
+                width: width-10,
+              }}
 
-            theme={{
-              'stylesheet.calendar.header': {
-                header: {
-                  flexDirection: 'row',
-                  paddingLeft: 2,
-                  paddingRight: 10,
-                  alignItems: 'center',
+              theme={{
+                'stylesheet.calendar.header': {
+                  header: {
+                    flexDirection: 'row',
+                    paddingLeft: 2,
+                    paddingRight: 10,
+                    alignItems: 'center',
+                  },
+                  week: {
+                    marginTop: 7,
+                    flexDirection: 'row',
+                    justifyContent: 'space-around',
+                    borderBottomWidth: 1,
+                    borderColor: "rgba(47, 46, 46, 0.8)"
+                  },
                 },
-                week: {
-                  marginTop: 7,
-                  flexDirection: 'row',
-                  justifyContent: 'space-around',
-                  borderBottomWidth: 1,
-                  borderColor: "rgba(47, 46, 46, 0.8)"
+                'stylesheet.day.basic': {
+                  selected: {
+                    backgroundColor: '#939CEB',
+                    borderRadius: 16,
+                    width: 30,
+                    height: 30,
+                    shadowColor: '#939CEB',
+                    shadowOpacity: 1,
+                    shadowRadius: 7,
+                    shadowOffset: {width: 0, height: 0.17}
+                  },
+                  today: {
+                    backgroundColor: '#939CEB',
+                    borderRadius: 16,
+                    width: 30,
+                    height: 30,
+                    shadowColor: '#939CEB',
+                    shadowOpacity: 1,
+                    shadowRadius: 7,
+                    shadowOffset: {width: 0, height: 0.17}
+                  }
                 },
-              },
-              'stylesheet.day.basic': {
-                selected: {
-                  backgroundColor: '#939CEB',
-                  borderRadius: 16,
-                  width: 30,
-                  height: 30,
-                  shadowColor: '#939CEB',
-                  shadowOpacity: 1,
-                  shadowRadius: 7,
-                  shadowOffset: {width: 0, height: 0.17}
-                },
-                today: {
-                  backgroundColor: '#939CEB',
-                  borderRadius: 16,
-                  width: 30,
-                  height: 30,
-                  shadowColor: '#939CEB',
-                  shadowOpacity: 1,
-                  shadowRadius: 7,
-                  shadowOffset: {width: 0, height: 0.17}
+
+                calendarBackground: 'rgba(255, 255, 255, 0)',
+                textSectionTitleColor: 'rgba(239, 240, 243, 0.5)',
+                textSectionTitleDisabledColor: 'rgba(239, 240, 243, 1)',
+                selectedDayBackgroundColor: '#939CEB',
+                todayBackgroundColor: '#939CEB',
+                selectedDayTextColor: '#ffffff',
+                todayTextColor: '#ffffff',
+                dayTextColor: '#EFF0F3',
+                textDisabledColor: "rgba(239, 240, 243, 0.5)",
+                dotColor: '#00adf5',
+                selectedDotColor: '#ffffff',
+                monthTextColor: 'rgba(255, 255, 255, 0.8)',
+                indicatorColor: 'blue',
+                textDayFontWeight: '400',
+                textMonthFontWeight: 'bold',
+                textDayHeaderFontWeight: '500',
+                textDayFontSize: 12,
+                textMonthFontSize: 16,
+                textDayHeaderFontSize: 12
+              }}
+
+              horizontal={true}
+
+              disabledDaysIndexes={[weekHighlight]}
+              markedDates={marked}
+
+              // Initially visible month. Default = now
+              // Minimum date that can be selected, dates before minDate will be grayed out. Default = undefined
+              // Maximum date that can be selected, dates after maxDate will be grayed out. Default = undefined
+              // Handler which gets executed on day press. Default = undefined
+              onDayPress={onDayPress}
+              // Handler which gets executed on day long press. Default = undefined
+              onDayLongPress={day => {
+                console.log('selected day', selectedDate);
+              }}
+              // Month format in calendar title. Formatting values: http://arshaw.com/xdate/#Formatting
+              // Handler which gets executed when visible month changes in calendar. Default = undefined
+              onMonthChange={month => {
+                if (today.getMonth()+1 == month["month"] && today.getFullYear() == month["year"]){
+                  setWeekHighlight(today.getDay());
+                  setIsMonthCorrect(true);
                 }
-              },
-
-              calendarBackground: 'rgba(255, 255, 255, 0)',
-              textSectionTitleColor: 'rgba(239, 240, 243, 0.5)',
-              textSectionTitleDisabledColor: 'rgba(239, 240, 243, 1)',
-              selectedDayBackgroundColor: '#939CEB',
-              todayBackgroundColor: '#939CEB',
-              selectedDayTextColor: '#ffffff',
-              todayTextColor: '#ffffff',
-              dayTextColor: '#EFF0F3',
-              textDisabledColor: "rgba(239, 240, 243, 0.5)",
-              dotColor: '#00adf5',
-              selectedDotColor: '#ffffff',
-              monthTextColor: 'rgba(255, 255, 255, 0.8)',
-              indicatorColor: 'blue',
-              textDayFontWeight: '400',
-              textMonthFontWeight: 'bold',
-              textDayHeaderFontWeight: '500',
-              textDayFontSize: 12,
-              textMonthFontSize: 16,
-              textDayHeaderFontSize: 12
-            }}
-
-            horizontal={true}
-
-            disabledDaysIndexes={[weekHighlight]}
-            markedDates={marked}
-
-            // Initially visible month. Default = now
-            // Minimum date that can be selected, dates before minDate will be grayed out. Default = undefined
-            // Maximum date that can be selected, dates after maxDate will be grayed out. Default = undefined
-            // Handler which gets executed on day press. Default = undefined
-            onDayPress={onDayPress}
-            // Handler which gets executed on day long press. Default = undefined
-            onDayLongPress={day => {
-              console.log('selected day', selectedDate);
-            }}
-            // Month format in calendar title. Formatting values: http://arshaw.com/xdate/#Formatting
-            // Handler which gets executed when visible month changes in calendar. Default = undefined
-            onMonthChange={month => {
-              if (today.getMonth()+1 == month["month"] && today.getFullYear() == month["year"]){
-                setWeekHighlight(today.getDay());
-                setIsMonthCorrect(true);
-              }
-              else{
-                setWeekHighlight([]);
-                setIsMonthCorrect(false);
-              }
-            }}
-            // Hide month navigation arrows. Default = false
-            hideArrows={true}
-            // Replace default arrows with custom ones (direction can be 'left' or 'right')
-            // Do not show days of other months in month page. Default = false
-            hideExtraDays={false}
-            // If hideArrows = false and hideExtraDays = false do not switch month when tapping on greyed out
-            // day from another month that is visible in calendar page. Default = false
-            disableMonthChange={false}
-            // If firstDay=1 week starts from Monday. Note that dayNames and dayNamesShort should still start from Sunday
-            firstDay={0}
-            // Hide day names. Default = false
-            hideDayNames={false}
-            // Show week numbers to the left. Default = false
-            showWeekNumbers={false}
-            // Handler which gets executed when press arrow icon left. It receive a callback can go back month
-            onPressArrowLeft={subtractMonth => subtractMonth()}
-            // Handler which gets executed when press arrow icon right. It receive a callback can go next month
-            onPressArrowRight={addMonth => addMonth()}
-            // Disable left arrow. Default = false
-            disableArrowLeft={false}
-            // Disable right arrow. Default = false
-            disableArrowRight={false}
-            // Disable all touch events for disabled days. can be override with disableTouchEvent in markedDates
-            disableAllTouchEventsForDisabledDays={false}
-            // Replace default month and year title with custom one. the function receive a date as parameter
-            // Enable the option to swipe between months. Default = false
-            enableSwipeMonths={true}
-          />
-        </CalendarProvider>
-
+                else{
+                  setWeekHighlight([]);
+                  setIsMonthCorrect(false);
+                }
+              }}
+              // Hide month navigation arrows. Default = false
+              hideArrows={true}
+              // Replace default arrows with custom ones (direction can be 'left' or 'right')
+              // Do not show days of other months in month page. Default = false
+              hideExtraDays={false}
+              // If hideArrows = false and hideExtraDays = false do not switch month when tapping on greyed out
+              // day from another month that is visible in calendar page. Default = false
+              disableMonthChange={false}
+              // If firstDay=1 week starts from Monday. Note that dayNames and dayNamesShort should still start from Sunday
+              firstDay={0}
+              // Hide day names. Default = false
+              hideDayNames={false}
+              // Show week numbers to the left. Default = false
+              showWeekNumbers={false}
+              // Handler which gets executed when press arrow icon left. It receive a callback can go back month
+              onPressArrowLeft={subtractMonth => subtractMonth()}
+              // Handler which gets executed when press arrow icon right. It receive a callback can go next month
+              onPressArrowRight={addMonth => addMonth()}
+              // Disable left arrow. Default = false
+              disableArrowLeft={false}
+              // Disable right arrow. Default = false
+              disableArrowRight={false}
+              // Disable all touch events for disabled days. can be override with disableTouchEvent in markedDates
+              disableAllTouchEventsForDisabledDays={false}
+              // Replace default month and year title with custom one. the function receive a date as parameter
+              // Enable the option to swipe between months. Default = false
+              enableSwipeMonths={true}
+            />
+          </CalendarProvider>
+        </View>        
         <Text style={styles.header}>{"Upcoming Events"}</Text>
 
         <ScrollView style={[styles.eventScroll, {width: width}]} horizontal="True">
@@ -216,6 +214,9 @@ const styles = StyleSheet.create({
   root: {
     alignItems: 'center',
     padding: 20,
+  },
+  screen: {
+    paddingTop: 120,
   },
   profilePictureBorder: {
     borderWidth: 3, 

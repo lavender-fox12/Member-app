@@ -15,13 +15,14 @@ function ChallengesScreen({ navigation }) {
           source={require('../assets/tempProfilePhoto.png')}
         />
       </View>
-      <Text style={styles.title}>Challenges</Text>
+      {/* <Text style={styles.title}>Challenges</Text> */}
       <Text style={styles.name}>{name}</Text>
       <TransparentButton
+        onPress={() => navigation.navigate('Open Challenges')}
         text="Open Challenges"
         text2="Complete these challenges at any time!"
       />
-      {/* Should run backend code to switch to Open Challenges Page*/}
+
       <TransparentButton
         text="Level-Based Challenges"
         text2="Complete these challenges at any time!"
