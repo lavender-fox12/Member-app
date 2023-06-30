@@ -24,9 +24,9 @@ Instructions for initializing React Native project:
     <li>If instructions unclear or don't work, message team leads (Windows: Oliver, Mac: Shreya) or Google it  </li>
     <li>Install node js </li>
     <li>Install node package manager (npm) </li>
-    <li>Navigate to the Member-app directory  </li>
+    <li>Navigate to the Member-app directory</li>
     <li>Run npm install</li>
-    <li>Set up Android Emulator and install Expo Go on it (or on your phone)</li>
+    <li>Set up Android Emulator and install Expo Go on it (or install Expo Go on your phone, either should work unless for some reason your computer and phone are connected to different wifis)</li>
     <li>Run npm start</li>
     <li>In Expo Go, type the ip address that should show in the terminal after running npm start </li>
     <li>The app should auto update every time you change the code and save it</li>  
