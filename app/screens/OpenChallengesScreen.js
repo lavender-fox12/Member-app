@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo, setState } from 'react';
+import React from 'react';
 import {
   View,
   Text,
@@ -6,11 +6,10 @@ import {
   StyleSheet,
   useWindowDimensions,
   ScrollView,
-  ImageBackground,
   Pressable,
 } from 'react-native';
 import Screen from '../components/Screen';
-import TempProfilePhoto from '../assets/tempProfilePhoto.png';
+
 import Check from '../assets/check.png';
 
 function OpenChallengesScreen({ navigation }) {
@@ -21,115 +20,56 @@ function OpenChallengesScreen({ navigation }) {
   };
 
   return (
-    <ScrollView
-      showsVerticalScrollIndicator={false}
-      contentContainerStyle={{ flexGrow: 1 }}
-    >
-      <Screen style={styles.screen}>
-        <View
-          style={[
-            { position: 'absolute' },
-            { marginTop: 21 },
-            { marginRight: 23 },
-            { right: 0 },
-            { height: height * 0.075 },
-            { width: height * 0.075 },
-            { borderRadius: height * (0.095 / 2) },
-            styles.profilePictureBorder,
-          ]}
-        >
-          <Image
-            source={TempProfilePhoto}
-            style={[
-              styles.profilePicture,
-              { height: height * 0.062 },
-              { width: height * 0.062 },
-              { borderRadius: height * 0.045 },
-            ]}
-          />
+    <Screen style={styles.screen}>
+      <View style={styles.profilePictureBorder}>
+        <Image
+          style={styles.profilePicture}
+          source={require('../assets/tempProfilePhoto.png')}
+        />
+      </View>
+      <ScrollView style={[styles.challengesScroll, { width: width }]}>
+        <View style={styles.challengeContainer}>
+          <Pressable
+            onPress={onChallengePressed}
+            style={[styles.challengeNameContainer, { width: width * 0.68 }]}
+          >
+            <Text style={styles.challengeText}>{'Challenge Name #1'}</Text>
+          </Pressable>
+          <View style={styles.checkContainer}>
+            <Text style={styles.challengeText}>{'+10'}</Text>
+            <Image source={Check} style={styles.challengeCheck} />
+          </View>
         </View>
 
-        <ScrollView style={[styles.challengesScroll, { width: width }]}>
-          <View style={styles.challengeContainer}>
-            <Pressable
-              onPress={onChallengePressed}
-              style={[styles.challengeNameContainer, { width: width * 0.68 }]}
-            >
-              <Text style={styles.challengeText}>{'Challenge Name #1'}</Text>
-            </Pressable>
-            <View
-              style={[
-                { backgroundColor: 'rgba(135, 121, 164, 0.5)' },
-                { height: 50 },
-                { width: 50 },
-                { borderRadius: 25 },
-                { marginLeft: 'auto' },
-                { marginRight: 20 },
-                { alignItems: 'center' },
-                { justifyContent: 'center' },
-                { overflow: 'visible' },
-              ]}
-            >
-              <Text style={styles.challengeText}>{'+10'}</Text>
-              <Image source={Check} style={styles.challengeCheck} />
-            </View>
+        <View style={styles.challengeContainer}>
+          <Pressable
+            onPress={onChallengePressed}
+            style={[styles.challengeNameContainer, { width: width * 0.68 }]}
+          >
+            <Text style={styles.challengeText}>{'Challenge Name #2'}</Text>
+          </Pressable>
+          <View style={styles.checkContainer}>
+            <Text style={styles.challengeText}>{'+10'}</Text>
+            <Image source={Check} style={styles.challengeCheck} />
           </View>
+        </View>
 
-          <View style={styles.challengeContainer}>
-            <Pressable
-              onPress={onChallengePressed}
-              style={[styles.challengeNameContainer, { width: width * 0.68 }]}
-            >
-              <Text style={styles.challengeText}>{'Challenge Name #2'}</Text>
-            </Pressable>
-            <View
-              style={[
-                { backgroundColor: 'rgba(135, 121, 164, 0.5)' },
-                { height: 50 },
-                { width: 50 },
-                { borderRadius: 25 },
-                { marginLeft: 'auto' },
-                { marginRight: 20 },
-                { alignItems: 'center' },
-                { justifyContent: 'center' },
-                { overflow: 'visible' },
-              ]}
-            >
-              <Text style={styles.challengeText}>{'+10'}</Text>
-              <Image source={Check} style={styles.challengeCheck} />
-            </View>
+        <View style={styles.challengeContainer}>
+          <Pressable
+            onPress={onChallengePressed}
+            style={[styles.challengeNameContainer, { width: width * 0.68 }]}
+          >
+            <Text style={styles.challengeText}>{'Challenge Name #3'}</Text>
+          </Pressable>
+          <View style={styles.checkContainer}>
+            <Text style={styles.challengeText}>{'+10'}</Text>
+            <Image source={Check} style={styles.challengeCheck} />
           </View>
-
-          <View style={styles.challengeContainer}>
-            <Pressable
-              onPress={onChallengePressed}
-              style={[styles.challengeNameContainer, { width: width * 0.68 }]}
-            >
-              <Text style={styles.challengeText}>{'Challenge Name #3'}</Text>
-            </Pressable>
-            <View
-              style={[
-                { backgroundColor: 'rgba(135, 121, 164, 0.5)' },
-                { height: 50 },
-                { width: 50 },
-                { borderRadius: 25 },
-                { marginLeft: 'auto' },
-                { marginRight: 20 },
-                { alignItems: 'center' },
-                { justifyContent: 'center' },
-                { overflow: 'visible' },
-              ]}
-            >
-              <Text style={styles.challengeText}>{'+10'}</Text>
-              <Image source={Check} style={styles.challengeCheck} />
-            </View>
-          </View>
-        </ScrollView>
-      </Screen>
-    </ScrollView>
+        </View>
+      </ScrollView>
+    </Screen>
   );
 }
-//<ImageBackground source={Background} resizeMode="cover" style={[styles.image, {height: height}, {width: width}]}>
 
 const styles = StyleSheet.create({
   root: {
@@ -140,16 +80,7 @@ const styles = StyleSheet.create({
     paddingTop: 120,
     alignItems: 'center',
   },
-  profilePictureBorder: {
-    borderWidth: 3,
-    borderColor: '#4881CB',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  profilePicture: {
-    maxHeight: 100,
-    maxWidth: 100,
-  },
+
   text: {
     fontSize: 14,
     color: 'white',
@@ -187,6 +118,34 @@ const styles = StyleSheet.create({
     marginBottom: 'auto',
     marginLeft: -10,
     marginTop: -10,
+  },
+  checkContainer: {
+    backgroundColor: 'rgba(135, 121, 164, 0.5)',
+    height: 50,
+    width: 50,
+    borderRadius: 25,
+    marginLeft: 'auto',
+    marginRight: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'visible',
+  },
+  profilePictureBorder: {
+    alignItems: 'center',
+    borderRadius: 60,
+    borderWidth: 3,
+    borderColor: '#4881CB',
+    justifyContent: 'center',
+    overflow: 'hidden',
+    right: 30,
+    top: 30,
+    position: 'absolute',
+    width: 60,
+    height: 60,
+  },
+  profilePicture: {
+    maxHeight: 60,
+    maxWidth: 60,
   },
 });
 export default OpenChallengesScreen;
