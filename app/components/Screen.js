@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, SafeAreaView } from 'react-native';
+import { View, StyleSheet, SafeAreaView, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Constants from 'expo-constants';
 
@@ -12,7 +12,9 @@ function Screen({ children, style }) {
       end={{ x: 0, y: 1.0 }}
       style={[{ flex: 1 }, style]}
     >
-      <View style={[styles.background, style]}>{children}</View>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+        <View style={[styles.background, style]}>{children}</View>
+      </TouchableWithoutFeedback>
     </LinearGradient>
   );
 }
