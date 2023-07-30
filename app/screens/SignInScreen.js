@@ -55,7 +55,7 @@ function SignInScreen({ navigation }) {
             name="email"
             placeholder="Email"
             textContentType="emailAddress"
-            style={styles.textBox}
+            width='100%'
           />
           <AppFormField
             autoCapitalize="none"
@@ -64,7 +64,7 @@ function SignInScreen({ navigation }) {
             placeholder="Password"
             secureTextEntry
             textContentType="password"
-            style={styles.textBox}
+            width='100%'
           />
           <SubmitButton text={'LOGIN'} />
         </AppForm>
@@ -107,7 +107,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  textBox: {
-    width: "100%"
-  }
 });
