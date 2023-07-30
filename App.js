@@ -5,9 +5,8 @@ import TechSupportScreen from './app/screens/TechSupportScreen';
 
 export default function App() {
   return (
-    // <NavigationContainer>
-    //   <AuthNavigator />
-    // </NavigationContainer>
-    <TechSupportScreen />
+    <NavigationContainer>
+      <AuthNavigator />
+    </NavigationContainer>
   );
 }

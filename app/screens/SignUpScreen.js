@@ -63,6 +63,7 @@ function SignUpScreen({ navigation }) {
             name="email"
             placeholder="Email"
             textContentType="emailAddress"
+            style={styles.textBox}
           />
           <AppFormField
             autoCapitalize="none"
@@ -71,6 +72,7 @@ function SignUpScreen({ navigation }) {
             placeholder="Password"
             secureTextEntry
             textContentType="password"
+            style={styles.textBox}
           />
           <AppFormField
             autoCapitalize="none"
@@ -79,6 +81,7 @@ function SignUpScreen({ navigation }) {
             placeholder="Re-type Password"
             secureTextEntry
             textContentType="password"
+            style={styles.textBox}
           />
           <SubmitButton text={'SIGN UP'} />
         </AppForm>
@@ -120,4 +123,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  textBox: {
+    width: "100%"
+  }
 });
