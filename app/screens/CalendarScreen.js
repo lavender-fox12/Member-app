@@ -5,6 +5,7 @@ import Screen from '../components/Screen';
 import TempProfilePhoto from '../assets/tempProfilePhoto.png';
 
 
+
 function CalendarScreen (props) {
   
   LocaleConfig.locales['en'] = {
