@@ -55,6 +55,7 @@ function SignInScreen({ navigation }) {
             name="email"
             placeholder="Email"
             textContentType="emailAddress"
+            width='100%'
           />
           <AppFormField
             autoCapitalize="none"
@@ -63,6 +64,7 @@ function SignInScreen({ navigation }) {
             placeholder="Password"
             secureTextEntry
             textContentType="password"
+            width='100%'
           />
           <SubmitButton text={'LOGIN'} />
         </AppForm>

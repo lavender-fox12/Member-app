@@ -63,6 +63,7 @@ function SignUpScreen({ navigation }) {
             name="email"
             placeholder="Email"
             textContentType="emailAddress"
+            width='100%'
           />
           <AppFormField
             autoCapitalize="none"
@@ -71,6 +72,7 @@ function SignUpScreen({ navigation }) {
             placeholder="Password"
             secureTextEntry
             textContentType="password"
+            width='100%'
           />
           <AppFormField
             autoCapitalize="none"
@@ -79,6 +81,7 @@ function SignUpScreen({ navigation }) {
             placeholder="Re-type Password"
             secureTextEntry
             textContentType="password"
+            width='100%'
           />
           <SubmitButton text={'SIGN UP'} />
         </AppForm>
