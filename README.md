@@ -9,7 +9,7 @@ Commands for Mac (Terminal) and Windows (Powershell) (Use powershell, not cmd):
 
 Setting up GitHub:
 <ol>
-    <li>Message a team lead (Shreya, Oliver) with your email so we can add you to the GitHub</li>
+    <li>Message a team lead (Prajwala, Mahira) with your email so we can add you to the GitHub</li>
     <li>Download Git, google "Git" and you should see the site, default settings should be fine, Mac users need to use Homebrew, message Shreya for help. Windows users message Oliver. Linux users I'm assuming you know how to do this already.</li>
     <li>Open VSCode or whatever IDE you use, the rest of the tutorial will follow VSCode.</li>
     <li>Click the little person icon on the bottom left, check that you're signed in to GitHub, sign in if you're not.</li>
@@ -21,7 +21,7 @@ Setting up GitHub:
 
 Instructions for initializing React Native project:
 <ol>
-    <li>If instructions unclear or don't work, message team leads (Windows: Oliver, Mac: Shreya) or Google it  </li>
+    <li>If instructions unclear or don't work, message team leads (Windows: Prajwala, Mac: Mahira) or Google it  </li>
     <li>Install node js </li>
     <li>Install node package manager (npm) </li>
     <li>Navigate to the Member-app directory</li>
