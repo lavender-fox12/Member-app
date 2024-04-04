@@ -10,6 +10,7 @@ import {
 
 import Screen from '../components/Screen';
 import TempProfilePhoto from '../assets/tempProfilePhoto.png';
+import BadgesLogo from '../assets/badgesLogo.png';
 import CustomButton from '../components/customButton';
 import { auth } from '../navigation/firebase';
 import { signOut } from 'firebase/auth';
@@ -57,12 +58,14 @@ function DashboardScreen({ navigation }) {
           {'Rank 23                                  1738 Points'}{' '}
         </Text>
       </View>
-      <View style={styles.paddedBox}>
-        <Text style={styles.text}>
-          {' '}
-          {'Badge Here                            Planet Here'}{' '}
-        </Text>
-      </View>
+      <TouchableWithoutFeedback style={styles.paddedBox}>
+        <Image 
+        source={BadgesLogo}
+        style={[
+
+        ]}
+        />
+      </TouchableWithoutFeedback>
       <CustomButton text="Sign Out" onPress={handleSignOut} type="PRIMARY" />
     </Screen>
   );
