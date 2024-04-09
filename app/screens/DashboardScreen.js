@@ -11,6 +11,7 @@ import {
 import Screen from '../components/Screen';
 import TempProfilePhoto from '../assets/tempProfilePhoto.png';
 import BadgesLogo from '../assets/badgesLogo.png';
+import RankLogo from '../assets/RankLogo.png';
 import CustomButton from '../components/customButton';
 import { auth } from '../navigation/firebase';
 import { signOut } from 'firebase/auth';
@@ -53,19 +54,36 @@ function DashboardScreen({ navigation }) {
         </Text>
       </View>
       <View style={styles.paddedBox}>
-        <Text style={styles.text}>
-          {' '}
-          {'Rank 23                                  1738 Points'}{' '}
-        </Text>
-      </View>
-      <TouchableWithoutFeedback style={styles.paddedBox}>
-        <Image 
-        source={BadgesLogo}
-        style={[
+        <TouchableWithoutFeedback
+          onPress={() => navigation.navigate( 'Badges' )}
+        >
+          <Image 
+           source={RankLogo}
+           style={[
+
 
         ]}
         />
-      </TouchableWithoutFeedback>
+        </TouchableWithoutFeedback>
+        <Text style={styles.text}>
+          {' '}
+          {'Rank \n'}
+          {' \n Points '}
+        </Text>
+      </View>
+      <View style={styles.paddedBox}>
+        <TouchableWithoutFeedback
+          onPress={() => navigation.navigate( 'Badges' )}
+        >
+          <Image 
+           source={BadgesLogo}
+           style={[
+
+
+        ]}
+        />
+        </TouchableWithoutFeedback>
+      </View>
       <CustomButton text="Sign Out" onPress={handleSignOut} type="PRIMARY" />
     </Screen>
   );
@@ -109,6 +127,8 @@ const styles = StyleSheet.create({
     marginVertical: 15,
 
     textAlign: 'center',
+
+    flexDirection: 'row'
   },
 
   stats: {

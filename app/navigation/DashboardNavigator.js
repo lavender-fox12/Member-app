@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import SettingsNavigator from './SettingsNavigator';
 import DashboardScreen from '../screens/DashboardScreen';
+import BadgesScreen from '../screens/BadgesScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +23,13 @@ const DashboardNavigator = () => (
       }}
       name="Settings"
       component={SettingsNavigator}
+    />
+    <Stack.Screen
+      options={{
+        headerShown: false,
+      }}
+      name="Badges"
+      component={BadgesScreen}
     />
   </Stack.Navigator>
 );
