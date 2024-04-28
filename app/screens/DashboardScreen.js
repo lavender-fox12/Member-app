@@ -44,13 +44,26 @@ function DashboardScreen({ navigation }) {
         </TouchableWithoutFeedback>
       </View>
       <View style={styles.stats}>
-        <Text style={styles.text}>
+        <Text 
+        style={[
+          styles.text,
+            {marginRight: 'auto'},
+            ]}>
+          {''}
+          {'Points to Next Badge '}
+          {'Tasks Completed '}
+          {'Total Hours'}
           {' '}
-          {'    Points        Tasks Completed       Total Hr'}{' '}
         </Text>
-        <Text style={styles.text}>
+        <Text style={[
+          styles.text,
+            { color: 'lightskyblue'},
+            { fontSize: 16},
+            { fontWeight: 'bold'},
+            {textAlign: 'justify'},
+            ]}>
           {' '}
-          {'     350                     50/80                   6 Hrs'}{' '}
+          {'350 ' + '50/80 '+'6 Hrs '}{' '}
         </Text>
       </View>
       <View style={styles.paddedBox}>
@@ -65,8 +78,12 @@ function DashboardScreen({ navigation }) {
         ]}
         />
         </TouchableWithoutFeedback>
-        <Text style={styles.text}>
-          {' '}
+        <Text style={[
+          styles.text,
+            { fontSize: 20},
+            { textAlign: 'right'},
+            ]}>
+          
           {'Rank \n'}
           {' \n Points '}
         </Text>
