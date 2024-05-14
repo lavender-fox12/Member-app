@@ -22,89 +22,74 @@ function DashboardScreen({ navigation }) {
     navigation.navigate('SignIn');
   };
 
-  const { height } = useWindowDimensions();
+  const {height} = useWindowDimensions();
 
   return (
     <Screen>
       <View style={styles.header}>
-        <Text style={styles.text}> {'John Doe'} </Text>
-        <Text style={styles.text}> {'Dashboard'} </Text>
+        <Text style={[styles.text,{fontSize: 25}]}> {'John Doe'} </Text>
+        <Text style={[styles.text,{fontSize: 25}]}> {'Dashboard'} </Text>
         <TouchableWithoutFeedback
           onPress={() => navigation.navigate('Settings')}
         >
           <Image
             source={TempProfilePhoto}
-            style={[
-              styles.profilePicture,
-              { height: height * 0.08 },
-              { width: height * 0.08 },
-              { borderRadius: height * 0.045 },
-            ]}
+            style={[styles.profilePicture, { height: height * 0.08 }, { width: height * 0.08 }, { borderRadius: height * 0.045 },]}
           />
         </TouchableWithoutFeedback>
       </View>
       <View style={styles.stats}>
-        <Text 
-        style={[
-          styles.text,
-            {marginRight: 'auto'},
-            ]}>
-          {''}
-          {'Points to Next Badge '}
-          {'Tasks Completed '}
-          {'Total Hours'}
-          {' '}
-        </Text>
-        <Text style={[
-          styles.text,
-            { color: 'lightskyblue'},
-            { fontSize: 16},
-            { fontWeight: 'bold'},
-            {textAlign: 'justify'},
-            ]}>
-          {' '}
-          {'350 ' + '50/80 '+'6 Hrs '}{' '}
-        </Text>
+        <View>
+          <Text style={styles.text}>Points to Next Badge</Text>
+          <Text style={styles.statsText}>350</Text>
+        </View>
+        <View>
+          <Text style={styles.text}>Tasks Completed</Text>
+          <Text style={styles.statsText}>50 / 80</Text>
+        </View>
+        <View>
+          <Text style={styles.text}>Total Hours</Text>
+          <Text style={styles.statsText}>6</Text>
+        </View>
       </View>
       <View style={styles.paddedBox}>
-        <TouchableWithoutFeedback
-          onPress={() => navigation.navigate( 'Badges' )}
-        >
-          <Image 
-           source={RankLogo}
-           style={[
-
-
-        ]}
-        />
-        </TouchableWithoutFeedback>
-        <Text style={[
-          styles.text,
-            { fontSize: 20},
-            { textAlign: 'right'},
-            ]}>
-          
-          {'Rank \n'}
-          {' \n Points '}
-        </Text>
+        <View style={styles.rankLogoBox}>
+          <TouchableWithoutFeedback
+          onPress={() => navigation.navigate('Badges')}>
+            <Image source={RankLogo} style={styles.image}/>
+          </TouchableWithoutFeedback>
+        </View>
+        <View style={styles.rankLogoText}>
+          <Text style={styles.rank}>{'Rank 125'}</Text>
+          <Text style={styles.points}>{'1800 Points'}</Text>
+        </View>
       </View>
-      <View style={styles.paddedBox}>
-        <TouchableWithoutFeedback
-          onPress={() => navigation.navigate( 'Badges' )}
-        >
-          <Image 
-           source={BadgesLogo}
-           style={[
-
-
-        ]}
-        />
-        </TouchableWithoutFeedback>
+      <View style={styles.badgeAndPlanet}>
+        <View style={styles.badgeBox}>
+          <TouchableWithoutFeedback
+            onPress={() => navigation.navigate('Badges')}>
+            <Image source={BadgesLogo} style={styles.badge}/>
+          </TouchableWithoutFeedback>
+        </View>
+        <View style={styles.planetBox}>
+          <TouchableWithoutFeedback
+            onPress={() => navigation.navigate('Badges')}>
+            <Image source={BadgesLogo} style={styles.planet}/>
+          </TouchableWithoutFeedback>
+        </View>
       </View>
       <CustomButton text="Sign Out" onPress={handleSignOut} type="PRIMARY" />
     </Screen>
-  );
-}
+  )
+};
+
+const hexToRgbA = (hex, alpha) => {
+  let r = parseInt(hex.slice(1, 3), 16);
+  let g = parseInt(hex.slice(3, 5), 16);
+  let b = parseInt(hex.slice(5, 7), 16);
+
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+};
 
 export default DashboardScreen;
 
@@ -113,19 +98,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     margin: 20,
   },
+
   header: {
     flex: 1,
     flexDirection: 'row',
   },
+
   profilePictureBorder: {
     borderWidth: 3,
     borderColor: '#4881CB',
   },
+
   profilePicture: {
     margin: 'auto',
     maxHeight: 100,
     maxWidth: 100,
   },
+
   text: {
     fontSize: 14,
     color: 'white',
@@ -133,23 +122,112 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginRight: 'auto',
   },
+
   paddedBox: {
-    backgroundColor: '#161B45',
-
+    backgroundColor: hexToRgbA('#8779A4', 0.7),
     borderColor: '#979797',
-    borderWidth: 0,
     borderRadius: 15,
-
-    padding: 40,
-    marginVertical: 15,
-
+    paddingVertical: 50,
+    margin: 25,
     textAlign: 'center',
-
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
 
   stats: {
+    flexDirection: 'row',
     alignItems: 'center',
-    margin: 20,
+    textAlign: 'center',
+    justifyContent: 'space-between',
+    margin: 25,
+    flex: 1,
+  },
+
+  statsText: {
+    color: 'lightskyblue',
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+
+  rankLogoBox: {
+    width: '40%',
+    borderRightWidth: 2,
+    borderRightColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginVertical: -50,
+  },
+
+  image: {
+    flex: 1,
+    width: '100%',
+    resizeMode: 'contain',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  rankLogoText: {
+    width: '60%',
+    color: 'white',
+    justifyContent: 'center',
+    color: 'white',
+  },
+
+  rank: {
+    textAlign: 'center',
+    justifyContent: 'center',
+    borderBottomWidth: 2,
+    borderBottomColor: 'white',
+    color: 'white',
+    fontSize: 30,
+    fontWeight: '300',
+  },
+
+  points: {
+    textAlign: 'center',
+    color: 'white',
+    fontSize: 30,
+    fontWeight: '300',
+  },
+
+  badgeAndPlanet: {
+    maxWidth: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  badgeBox: {
+    backgroundColor: hexToRgbA('#8779A4', 0.7),
+    borderColor: '#979797',
+    borderRadius: 15,
+    padding: 20,
+    margin: 25,
+    textAlign: 'center',
+    flexDirection: 'row',
+  },
+
+  badge: {
+    tintColor: 'white',
+    height: 120,
+    width: 120,
+    resizeMode: 'contain'
+  },
+
+  planetBox: {
+    backgroundColor: hexToRgbA('#8779A4', 0.7),
+    borderColor: '#979797',
+    borderRadius: 15,
+    padding: 20,
+    margin: 25,
+    textAlign: 'center',
+    flexDirection: 'row',
+  },
+
+  planet: {
+    tintColor: 'white',
+    height: 120,
+    width: 120,
+    resizeMode: 'contain'
   },
 });
