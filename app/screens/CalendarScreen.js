@@ -40,7 +40,7 @@ function CalendarScreen (props) {
                     .toISOString()
                     .split("T")[0];
 
-  const [selected, setSelected] = useState();
+  const [selected, setSelected] = useState(todayString);
 
   const [isMonthCorrect, setIsMonthCorrect] = useState(true);
 
@@ -101,23 +101,12 @@ function CalendarScreen (props) {
                     shadowRadius: 7,
                     shadowOffset: {width: 0, height: 0.17}
                   },
-                  today: {
-                    backgroundColor: '#939CEB',
-                    borderRadius: 16,
-                    width: 30,
-                    height: 30,
-                    shadowColor: '#939CEB',
-                    shadowOpacity: 1,
-                    shadowRadius: 7,
-                    shadowOffset: {width: 0, height: 0.17}
-                  }
                 },
 
                 calendarBackground: 'rgba(255, 255, 255, 0)',
                 textSectionTitleColor: 'rgba(239, 240, 243, 0.5)',
                 textSectionTitleDisabledColor: 'rgba(239, 240, 243, 1)',
                 selectedDayBackgroundColor: '#939CEB',
-                todayBackgroundColor: '#939CEB',
                 selectedDayTextColor: '#ffffff',
                 todayTextColor: '#ffffff',
                 dayTextColor: '#EFF0F3',
