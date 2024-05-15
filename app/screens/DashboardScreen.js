@@ -12,9 +12,10 @@ import Screen from '../components/Screen';
 import TempProfilePhoto from '../assets/tempProfilePhoto.png';
 import BadgesLogo from '../assets/badgesLogo.png';
 import RankLogo from '../assets/RankLogo.png';
+import PlanetLogo from '../assets/PlanetLogo.png';
 import CustomButton from '../components/customButton';
-import { auth } from '../navigation/firebase';
-import { signOut } from 'firebase/auth';
+import {auth} from '../navigation/firebase';
+import {signOut} from 'firebase/auth';
 
 function DashboardScreen({ navigation }) {
   const handleSignOut = async () => {
@@ -74,7 +75,7 @@ function DashboardScreen({ navigation }) {
         <View style={styles.planetBox}>
           <TouchableWithoutFeedback
             onPress={() => navigation.navigate('Badges')}>
-            <Image source={BadgesLogo} style={styles.planet}/>
+            <Image source={PlanetLogo} style={styles.planet}/>
           </TouchableWithoutFeedback>
         </View>
       </View>
@@ -225,7 +226,6 @@ const styles = StyleSheet.create({
   },
 
   planet: {
-    tintColor: 'white',
     height: 120,
     width: 120,
     resizeMode: 'contain'

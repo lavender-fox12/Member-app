@@ -4,8 +4,15 @@ import { View, StyleSheet, Image } from 'react-native';
 import CustomButton from '../components/customButton';
 import MenuButton from '../components/MenuButton';
 import Screen from '../components/Screen';
+import {auth} from '../navigation/firebase';
+import {signOut} from 'firebase/auth';
 
 function SettingsMenuScreen({ navigation }) {
+  const handleSignOut = async () => {
+    await signOut(auth);
+    navigation.navigate('SignIn');
+  };
+  
   return (
     <Screen style={styles.screen}>
       <View style={styles.profilePictureBorder}>
@@ -27,11 +34,7 @@ function SettingsMenuScreen({ navigation }) {
         size={30}
         text="Tech Support"
       />
-      <CustomButton
-        text="Logout"
-        onPress={() => console.log('')}
-        type="LOGOUT"
-      />
+      <CustomButton text="Sign Out" onPress={handleSignOut} type="PRIMARY" />
     </Screen>
   );
 }
