@@ -4,6 +4,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SettingsNavigator from './SettingsNavigator';
 import DashboardScreen from '../screens/DashboardScreen';
 import BadgesScreen from '../screens/BadgesScreen';
+import MercuryFront from '../screens/MercuryFront';
+import MercuryBack from '../screens/MercuryBack';
 
 const Stack = createNativeStackNavigator();
 
@@ -30,6 +32,20 @@ const DashboardNavigator = () => (
       }}
       name="Badges"
       component={BadgesScreen}
+    />
+    <Stack.Screen
+      options={{
+        headerShown: false,
+      }}
+      name="MercuryFront"
+      component={MercuryFront}
+    />
+    <Stack.Screen
+      options={{
+        headerShown: false,
+      }}
+      name="MercuryBack"
+      component={MercuryBack}
     />
   </Stack.Navigator>
 );

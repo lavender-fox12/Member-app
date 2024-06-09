@@ -74,7 +74,7 @@ function DashboardScreen({ navigation }) {
         </View>
         <View style={styles.planetBox}>
           <TouchableWithoutFeedback
-            onPress={() => navigation.navigate('Badges')}>
+            onPress={() => navigation.navigate('MercuryFront')}>
             <Image source={PlanetLogo} style={styles.planet}/>
           </TouchableWithoutFeedback>
         </View>
