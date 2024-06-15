@@ -27,7 +27,9 @@ function MercuryBack({ navigation }){
                     navigation={navigation}
                     planetPicture={Mercury}
                     points={400}
+                    event={"STEM-E WEBSITE MEMBER"}
                     planetName={"Mercury"}
+                    price_reward={"MERCURY BADGE"}
                     navigateTo={"MercuryFront"}
                 />
             </View>
