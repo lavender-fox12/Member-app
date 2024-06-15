@@ -18,11 +18,11 @@ function MercuryBack({ navigation }){
         <Screen>
             <View style={styles.container}>
                 <View style={styles.pointsContainer}>
-                        <Text style={styles.pointsText}>{'1800'}</Text>
-                    </View>
-                    <TouchableOpacity onPress={() => {navigation.goBack()} } style={styles.backArrowContainer}>
-                        <Text style={styles.backArrow}>{'<'}</Text>
-                    </TouchableOpacity>
+                    <Text style={styles.pointsText}>{'1800'}</Text>
+                </View>
+                <TouchableOpacity onPress={() => {navigation.goBack()} } style={styles.backArrowContainer}>
+                    <Text style={styles.backArrow}>{'<'}</Text>
+                </TouchableOpacity>
                 <PlanetBack 
                     navigation={navigation}
                     planetPicture={Mercury}
