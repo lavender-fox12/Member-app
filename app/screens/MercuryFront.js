@@ -17,12 +17,12 @@ function MercuryFront({ navigation }){
     return (
         <Screen>
             <View style={styles.container}>
-            <View style={styles.pointsContainer}>
-                        <Text style={styles.pointsText}>{'1800'}</Text>
-                    </View> 
-                    <TouchableOpacity onPress={() => {navigation.goBack()} } style={styles.backArrowContainer}>
-                        <Text style={styles.backArrow}>{'<'}</Text>
-                    </TouchableOpacity>
+                <View style={styles.pointsContainer}>
+                    <Text style={styles.pointsText}>{'1800'}</Text>
+                </View> 
+                <TouchableOpacity onPress={() => {navigation.goBack()} } style={styles.backArrowContainer}>
+                    <Text style={styles.backArrow}>{'<'}</Text>
+                </TouchableOpacity>
                 <PlanetFront 
                     navigation={navigation}
                     planetPicture={Mercury}

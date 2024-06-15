@@ -15,14 +15,16 @@ function PlanetFront({ navigation, planetPicture, points, planetName, navigateTo
     return (
         <View style={styles.container}>
             <View style={styles.square}>
-                <View>
+                <View style={styles.sqaureLeft}>
                     <Text style={styles.pointTitle}>Minimum Points</Text>
                     <Text style={styles.point}>{points} PTS</Text>
                     <Text style={styles.planetName}>Planet: {planetName}</Text>
                 </View>
-                <TouchableOpacity style={styles.learnMore} onPress={() => navigation.navigate(navigateTo)}>
-                    <Text style={styles.learnMoreText}>Learn More</Text>
-                </TouchableOpacity>
+                <View style={styles.sqaureCenter}>
+                    <TouchableOpacity style={styles.learnMore} onPress={() => navigation.navigate(navigateTo)}>
+                        <Text style={styles.learnMoreText}>Learn More</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
             <Image
                 source={planetPicture}
@@ -57,7 +59,15 @@ const styles = StyleSheet.create({
         backgroundColor: '#b0bec5',  // Background color of the square
         borderRadius: 30,  // Rounded edges (you can adjust this value for more or less rounding)
         justifyContent: 'center',
+    },
+    sqaureLeft: {
+        justifyContent: 'center',
         paddingHorizontal: 10,
+    },
+    sqaureCenter: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        top: '17%',
     },
     pointTitle: {
         textAlign: 'left',
