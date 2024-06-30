@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
-import { View, StyleSheet, Text, TouchableWithoutFeedback,TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
 import PlanetBack from '../components/PlanetBack';
 import Mercury from '../assets/Mercury.png';
 import Screen from '../components/Screen';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { NavigationContainer } from '@react-navigation/native';
 
 export function App() {
@@ -26,13 +27,16 @@ function MercuryBack({ navigation }){
                 <PlanetBack 
                     navigation={navigation}
                     planetPicture={Mercury}
-                    points={400}
+                    points={100}
                     event={"STEM-E WEBSITE MEMBER"}
                     planetName={"Mercury"}
                     price_reward={"MERCURY BADGE"}
                     navigateTo={"MercuryFront"}
                 />
             </View>
+            {/* <View>
+                <Ionicons name="checkmark-circle" size={70} color="green" />
+            </View> */}
         </Screen>
     );
 }
