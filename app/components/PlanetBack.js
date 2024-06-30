@@ -11,14 +11,17 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-function PlanetFront({ navigation, planetPicture, points, planetName, navigateTo }){
+function PlanetFront({ navigation, planetPicture, points, event, price_reward, navigateTo }){
     return (
         <View style={styles.container}>
             <View style={styles.square}>
                 <View style={styles.sqaureLeft}>
                     <Text style={styles.pointTitle}>Minimum Points</Text>
                     <Text style={styles.point}>{points} PTS</Text>
-                    <Text style={styles.planetName}>Planet: {planetName}</Text>
+                    <Text style={styles.eventTitle}>Required Event</Text>
+                    <Text style={styles.event}>{event}</Text>
+                    <Text style={styles.rewardTitle}>Prize/Reward</Text>
+                    <Text style={styles.reward}>{price_reward}</Text>
                 </View>
                 <View style={styles.sqaureCenter}>
                     <TouchableOpacity style={styles.learnMore} onPress={() => navigation.navigate(navigateTo)}>
@@ -56,18 +59,19 @@ const styles = StyleSheet.create({
     square: {
         width: '75%',  // Width of the square
         height: '60%', // Height of the square
-        backgroundColor: '#b0bec5',  // Background color of the square
+        backgroundColor: 'rgba(176, 190, 197, 0.5)',  // Background color of the square
         borderRadius: 30,  // Rounded edges (you can adjust this value for more or less rounding)
         justifyContent: 'center',
     },
     sqaureLeft: {
+        top: '8%',
         justifyContent: 'center',
         paddingHorizontal: 10,
     },
     sqaureCenter: {
         justifyContent: 'center',
         alignItems: 'center',
-        top: '17%',
+        top: '10%',
     },
     pointTitle: {
         textAlign: 'left',
@@ -81,9 +85,27 @@ const styles = StyleSheet.create({
         padding: 5,
         fontSize: 20,
     },
-    planetName: {
+    eventTitle: {
         textAlign: 'left',
-        marginTop: 30,
+        fontWeight: 'bold',
+        top: '5%',
+        padding: 5,
+        fontSize: 20,
+    },
+    event: {
+        textAlign: 'left',
+        padding: 5,
+        fontSize: 20,
+    },
+    rewardTitle: {
+        textAlign: 'left',
+        fontWeight: 'bold',
+        top: '5%',
+        padding: 5,
+        fontSize: 20,
+    },
+    reward: {
+        textAlign: 'left',
         padding: 5,
         fontSize: 20,
     },

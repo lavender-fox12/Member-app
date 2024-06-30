@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     square: {
         width: '75%',  // Width of the square
         height: '60%', // Height of the square
-        backgroundColor: '#b0bec5',  // Background color of the square
+        backgroundColor: 'rgba(176, 190, 197, 0.5)',  // Background color of the square
         borderRadius: 30,  // Rounded edges (you can adjust this value for more or less rounding)
         alignItems: 'center',
         justifyContent: 'center',
@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
         top: '5%',
         padding: 45,
         fontSize: 100,
+        color: 'white',
     },
     planetName: {
         padding: 5,

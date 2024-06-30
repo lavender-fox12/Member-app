@@ -1,25 +1,25 @@
 import React, { useEffect } from 'react';
 import { View, StyleSheet, Text, TouchableWithoutFeedback, TouchableOpacity, Button } from 'react-native';
 import PlanetFront from '../components/PlanetFront';
-import Mercury from '../assets/Mercury.png'
+import Earth from '../assets/Earth.png'
 import Screen from '../components/Screen';
 import { NavigationContainer } from '@react-navigation/native';
 
 export function App() {
     return (
       <NavigationContainer>
-        <MercuryFront />
+        <EarthFront />
       </NavigationContainer>
     );
   }
 
-function MercuryFront({ navigation }){
+function EarthFront({ navigation }){
     return (
         <Screen>
             <View style={styles.container}>
                 <Button
                     title="Next"
-                    onPress={() => navigation.navigate('VenusFront')}
+                    onPress={() => navigation.navigate('MarsFront')}
                 />
                 <View style={styles.pointsContainer}>
                     <Text style={styles.pointsText}>{'1800'}</Text>
@@ -29,10 +29,10 @@ function MercuryFront({ navigation }){
                 </TouchableOpacity>
                 <PlanetFront 
                     navigation={navigation}
-                    planetPicture={Mercury}
-                    points={100}
-                    planetName={"Mercury"}
-                    navigateTo={"MercuryBack"}
+                    planetPicture={Earth}
+                    points={300}
+                    planetName={"Earth"}
+                    navigateTo={"EarthBack"}
                 />
             </View>
         </Screen>
@@ -84,4 +84,4 @@ const styles = StyleSheet.create({
     }, 
 });
 
-export default MercuryFront;
+export default EarthFront;

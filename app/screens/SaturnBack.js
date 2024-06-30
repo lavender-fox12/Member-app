@@ -1,38 +1,36 @@
 import React, { useEffect } from 'react';
-import { View, StyleSheet, Text, TouchableWithoutFeedback, TouchableOpacity, Button } from 'react-native';
-import PlanetFront from '../components/PlanetFront';
-import Mercury from '../assets/Mercury.png'
+import { View, StyleSheet, Text, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
+import PlanetBack from '../components/PlanetBack';
+import Saturn from '../assets/Saturn.png';
 import Screen from '../components/Screen';
 import { NavigationContainer } from '@react-navigation/native';
 
 export function App() {
     return (
       <NavigationContainer>
-        <MercuryFront />
+        <SaturnBack />
       </NavigationContainer>
     );
   }
 
-function MercuryFront({ navigation }){
+function SaturnBack({ navigation }){
     return (
         <Screen>
             <View style={styles.container}>
-                <Button
-                    title="Next"
-                    onPress={() => navigation.navigate('VenusFront')}
-                />
                 <View style={styles.pointsContainer}>
                     <Text style={styles.pointsText}>{'1800'}</Text>
-                </View> 
+                </View>
                 <TouchableOpacity onPress={() => {navigation.goBack()} } style={styles.backArrowContainer}>
                     <Text style={styles.backArrow}>{'<'}</Text>
                 </TouchableOpacity>
-                <PlanetFront 
+                <PlanetBack 
                     navigation={navigation}
-                    planetPicture={Mercury}
-                    points={100}
-                    planetName={"Mercury"}
-                    navigateTo={"MercuryBack"}
+                    planetPicture={Saturn}
+                    points={1000}
+                    event={"VOLUNTEER"}
+                    planetName={"Saturn"}
+                    price_reward={"STEM•E GIVER BADGE & 20% OFF"}
+                    navigateTo={"SaturnFront"}
                 />
             </View>
         </Screen>
@@ -84,4 +82,4 @@ const styles = StyleSheet.create({
     }, 
 });
 
-export default MercuryFront;
+export default SaturnBack;
