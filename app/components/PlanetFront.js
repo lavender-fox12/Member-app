@@ -10,8 +10,13 @@ import {
   Button,
   TouchableOpacity,
 } from 'react-native';
+import { useNavigationState } from '@react-navigation/native';
+import ProgressMarker from "./ProgressMarker";
 
 function PlanetFront({ navigation, planetPicture, points, planetName, navigateTo }){
+    const totalScreens = 9; // Total number of screens
+    const currentIndex = useNavigationState(state => state.index); 
+
     return (
         <View style={styles.container}>
             <View style={styles.square}>
@@ -25,6 +30,8 @@ function PlanetFront({ navigation, planetPicture, points, planetName, navigateTo
                 source={planetPicture}
                 style={styles.planet}
             />
+
+<ProgressMarker currentIndex={currentIndex} totalDots={totalScreens} /> 
         </View>
     );
 }
