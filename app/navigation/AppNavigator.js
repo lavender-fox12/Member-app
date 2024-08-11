@@ -2,7 +2,8 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icons from 'react-native-vector-icons/Octicons';
 
-import CalendarScreen from '../screens/CalendarScreen';
+import CalendarStack from './CalendarStack';
+
 import ChallengesNavigator from '../navigation/ChallengesNavigator';
 import DashboardNavigator from './DashboardNavigator';
 import SocialsScreen from '../screens/SocialsScreen';
@@ -33,7 +34,7 @@ const AppNavigator = () => (
     />
     <Tab.Screen
       name="Calendar"
-      component={CalendarScreen}
+      component={CalendarStack}
       options={{
         tabBarIcon: ({ size }) => (
           <Icons name="calendar" size={size} color={'#fff'} />
