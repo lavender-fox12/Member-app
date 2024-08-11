@@ -1,12 +1,12 @@
 import React, {useState, useCallback, useMemo, setState} from 'react';
-import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView} from 'react-native';
+import { View, Text, Image, Button, StyleSheet, TouchableOpacity, useWindowDimensions, ScrollView, TouchableWithoutFeedback} from 'react-native';
 import {Calendar, CalendarUtils, CalendarList, CalendarProvider, LocaleConfig} from 'react-native-calendars';
 import Screen from '../components/Screen';
 import TempProfilePhoto from '../assets/tempProfilePhoto.png';
 
 
 
-function CalendarScreen (props) {
+const CalendarScreen = ({ navigation, props }) => {
   
   LocaleConfig.locales['en'] = {
     monthNames: [
@@ -194,7 +194,11 @@ function CalendarScreen (props) {
             </View>
           </View>
         </ScrollView>
-
+      </View>
+      <View style={styles.createEventContainer}>
+        <TouchableOpacity style={styles.createEventButton} onPress={() => navigation.navigate('EventFormScreen')}>
+          <Text style={styles.createEventText}>Create Event</Text>
+        </TouchableOpacity>
       </View>
     </Screen>
   );
@@ -265,6 +269,25 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: "bold",
     color: 'rgba(255, 255, 255, 1)',
+  },
+  createEventContainer: {
+    position: 'absolute',
+    bottom: -490,
+    left: 0,
+    right: 0,
+    alignItems: 'center', 
+  },
+  createEventButton: {
+    padding: 8,
+    borderRadius: 5,
+    alignItems: 'center', 
+    backgroundColor: "#8468BB",
+    width: '30%', // Adjust width as needed
+  },
+  createEventText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: "white",
   }
 })
 export default CalendarScreen;
