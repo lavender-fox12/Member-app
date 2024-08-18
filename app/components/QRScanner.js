@@ -15,9 +15,10 @@ export default function App() {
     getCameraPermissions();
   }, []);
 
-  const handleBarCodeScanned = ({ type, data }) => {
+  const handleBarCodeScanned = ({ type, data, navigation }) => {
     setScanned(true);
     alert(`${data}`);
+    navigation.goBack();
   };
 
   if (hasPermission === null) {

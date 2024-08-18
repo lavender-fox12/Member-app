@@ -24,6 +24,7 @@ function ChallengesScreen({ navigation }) {
       />
 
       <TransparentButton
+      onPress={() => navigation.navigate('Level Based Challenges')}
         text="Level-Based Challenges"
         text2="Complete these challenges at any time!"
       />
