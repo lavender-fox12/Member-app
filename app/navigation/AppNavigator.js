@@ -1,17 +1,33 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icons from 'react-native-vector-icons/Octicons';
 
-import CalendarStack from './CalendarStack';
-
+import CalendarScreen from '../screens/CalendarScreen';
+import AdminScreen from '../screens/AdminScreen';
 import ChallengesNavigator from '../navigation/ChallengesNavigator';
 import DashboardNavigator from './DashboardNavigator';
 import SocialsScreen from '../screens/SocialsScreen';
 
-const Tab = createBottomTabNavigator();
+import adminCheck from '../components/AdminCheck';
 
-const AppNavigator = () => (
-  <Tab.Navigator
+const Tab = createBottomTabNavigator();
+const isAdmin = false;
+
+const AppNavigator = () => {
+  const [isAdmin, setIsAdmin] = useState(null);
+
+  useEffect(() => {
+    const checkAdminStatus = async () => {
+      const adminStatus = await adminCheck();
+      setIsAdmin(adminStatus);
+    };
+
+    setInterval(() => {
+      checkAdminStatus();
+    }, 1000);
+  }, []);
+
+  return (<Tab.Navigator
     screenOptions={{
       headerShown: false,
       tabBarStyle: {
@@ -34,7 +50,7 @@ const AppNavigator = () => (
     />
     <Tab.Screen
       name="Calendar"
-      component={CalendarStack}
+      component={CalendarScreen}
       options={{
         tabBarIcon: ({ size }) => (
           <Icons name="calendar" size={size} color={'#fff'} />
@@ -42,6 +58,18 @@ const AppNavigator = () => (
         title: '',
       }}
     />
+    {isAdmin && (
+      <Tab.Screen
+        name="AdminPage"
+        component={AdminScreen}
+        options={{
+          tabBarIcon: ({ size }) => (
+            <Icons name="tools" size={size} color={'#fff'} />
+          ),
+          title: '',
+        }}
+      />
+    )}
     <Tab.Screen
       name="Challenges"
       component={ChallengesNavigator}
@@ -49,7 +77,7 @@ const AppNavigator = () => (
         tabBarIcon: ({ size }) => (
           <Icons name="list-ordered" size={size} color={'#fff'} />
         ),
-        title: '',
+        title: ''
       }}
     />
     <Tab.Screen
@@ -63,6 +91,6 @@ const AppNavigator = () => (
       }}
     />
   </Tab.Navigator>
-);
+);};
 
 export default AppNavigator;

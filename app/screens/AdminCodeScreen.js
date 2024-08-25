@@ -7,6 +7,7 @@ import AppForm from '../components/AppForm';
 import AppFormField from '../components/AppFormField';
 import Screen from '../components/Screen';
 import SubmitButton from '../components/submitButton';
+import adminCheck from '../components/AdminCheck';
 
 const db = getFirestore(app);
 
@@ -15,10 +16,10 @@ function EditProfileScreen(props) {
 
   useEffect(() => {
     const checkAdminStatus = async () => {
-      const adminStatus = await checkIsAdmin();
+      const adminStatus = await adminCheck();
       setIsAdmin(adminStatus);
     };
-
+  
     setInterval(() => {
       checkAdminStatus();
     }, 1000);
@@ -69,34 +70,6 @@ async function verifyAdminCode(code) {
   
   await setDoc(doc(db, `users/${auth.currentUser.uid}`), {
     role: 'admin'
-  });
-}
-
-async function checkIsAdmin() {
-  const userId = await waitForUserId();
-  const userDoc = await getDoc(doc(db, `users/${userId}`));
-
-  if (userDoc.data() === undefined) return false;
-  const userRole = userDoc.data().role;
-
-  return userRole === 'admin';
-}
-
-function waitForUserId() {
-  let userId = auth.currentUser.uid;
-
-  return new Promise((resolve, reject) => {
-    const interval = setInterval(() => {
-      if (typeof userId !== 'undefined' && userId !== null) {
-        clearInterval(interval);
-        resolve(userId);
-      }
-    }, 100);
-
-    setTimeout(() => {
-      clearInterval(interval);
-      reject(new Error('Timeout: User was not retrieved in time.'));
-    }, 5000);
   });
 }
 
