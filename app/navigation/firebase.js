@@ -25,4 +25,4 @@ const app = !getApps().length ? initializeApp(firebaseConfig) : getApp(); // To 
 
 const auth = getAuth(app);
 const db = getDatabase();
-export { auth, db };
+export { auth, db, app };

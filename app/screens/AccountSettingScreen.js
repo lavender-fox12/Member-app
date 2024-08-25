@@ -29,6 +29,12 @@ function AccountSettingScreen({ navigation }) {
         onPress={() => navigation.navigate('Edit Profile')}
       />
       <MenuButton
+        text={'Become an Admin'}
+        type={'SECONDARY'}
+        style={styles.button}
+        onPress={() => navigation.navigate('Become an Admin')}
+      />
+      <MenuButton
         text={'Delete Account'}
         type={'SECONDARY'}
         style={[{ backgroundColor: '#d40f0f', fontSize: 20 }, styles.button]}
