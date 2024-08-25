@@ -12,11 +12,28 @@ import Screen from '../components/Screen';
 
 import Check from '../assets/check.png';
 
+const challenges = [
+  {
+    text: 'Become nominated as intern of the month for your team',
+    points: 50,
+  },
+  {
+    text: 'Speak on your team’s behalf during mentor meetings',
+    points: 25,
+  },
+  {
+    text: 'Attend the monthly townhalls',
+    points: 20,
+  },
+];
+
+const sortedChallenges = challenges.sort((a, b) => a.points - b.points);
+
 function OpenChallengesScreen({ navigation }) {
   const { height, width } = useWindowDimensions();
 
   const onChallengePressed = () => {
-    console.log('Challenge pressed');
+    navigation.navigate("QR Code Scanner");
   };
 
   return (
@@ -28,49 +45,24 @@ function OpenChallengesScreen({ navigation }) {
         />
       </View>
       <ScrollView style={[styles.challengesScroll, { width: width }]}>
-        <View style={styles.challengeContainer}>
+      {sortedChallenges.map((challenge, index) => (
+        <View key={index} style={styles.challengeContainer}>
           <Pressable
             onPress={onChallengePressed}
             style={[styles.challengeNameContainer, { width: width * 0.68 }]}
           >
-            <Text style={styles.challengeText}>{'Challenge Name #1'}</Text>
+            <Text style={styles.challengeText}>{challenge.text}</Text>
           </Pressable>
           <View style={styles.checkContainer}>
-            <Text style={styles.challengeText}>{'+10'}</Text>
+            <Text style={styles.challengeText}>{`+${challenge.points}`}</Text>
             <Image source={Check} style={styles.challengeCheck} />
           </View>
         </View>
-
-        <View style={styles.challengeContainer}>
-          <Pressable
-            onPress={onChallengePressed}
-            style={[styles.challengeNameContainer, { width: width * 0.68 }]}
-          >
-            <Text style={styles.challengeText}>{'Challenge Name #2'}</Text>
-          </Pressable>
-          <View style={styles.checkContainer}>
-            <Text style={styles.challengeText}>{'+10'}</Text>
-            <Image source={Check} style={styles.challengeCheck} />
-          </View>
-        </View>
-
-        <View style={styles.challengeContainer}>
-          <Pressable
-            onPress={onChallengePressed}
-            style={[styles.challengeNameContainer, { width: width * 0.68 }]}
-          >
-            <Text style={styles.challengeText}>{'Challenge Name #3'}</Text>
-          </Pressable>
-          <View style={styles.checkContainer}>
-            <Text style={styles.challengeText}>{'+10'}</Text>
-            <Image source={Check} style={styles.challengeCheck} />
-          </View>
-        </View>
+      ))}
       </ScrollView>
     </Screen>
   );
 }
-
 const styles = StyleSheet.create({
   root: {
     alignItems: 'center',
