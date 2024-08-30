@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+// import React, { useState, useEffect } from 'react';
 import { auth, app } from '../navigation/firebase';
-import { doc, getFirestore, setDoc, getDoc } from 'firebase/firestore';
+import { doc, getFirestore, getDoc } from 'firebase/firestore';
 
 const db = getFirestore(app);
 
@@ -39,22 +39,32 @@ const adminCheck = async () => {
     return userRole === 'admin';
 }
 
-function waitForUserId() {
-    let userId = auth.currentUser.uid;
+async function waitForUserId() {
+    const getUserId = () => {
+        return new Promise((resolve, reject) => {
+            const user = auth.currentUser;
+            if (user && user.uid) {
+                resolve(user.uid);
+            } else {
+                reject(new Error('User ID is not available'));
+            }
+        });
+    };
 
-    return new Promise((resolve, reject) => {
-    const interval = setInterval(() => {
-        if (typeof userId !== 'undefined' && userId !== null) {
-            clearInterval(interval);
-            resolve(userId);
+    try {
+        let userId;
+        const timeout = new Promise((_, reject) =>
+            setTimeout(() => reject(new Error('Timeout: User was not retrieved in time.')), 5000)
+        );
+
+        while (!userId) {
+            userId = await Promise.race([getUserId(), timeout]);
         }
-    }, 100);
 
-    setTimeout(() => {
-        clearInterval(interval);
-        reject(new Error('Timeout: User was not retrieved in time.'));
-    }, 5000);
-    });
+        return userId;
+    } catch (error) {
+        // throw error;
+    }
 }
 
 export default adminCheck;
