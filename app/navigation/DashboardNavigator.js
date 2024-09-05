@@ -22,6 +22,7 @@ import SaturnBack from '../screens/SaturnBack';
 import UranusBack from '../screens/UranusBack';
 import NeptuneBack from '../screens/NeptuneBack';
 import PlutoBack from '../screens/PlutoBack';
+import Leaderboard from '../screens/Leaderboard';
 
 const Stack = createNativeStackNavigator();
 
@@ -31,6 +32,11 @@ const DashboardNavigator = () => (
       options={{ headerShown: false }}
       name="Dashboard"
       component={DashboardScreen}
+    />
+    <Stack.Screen
+      options={{ headerShown: false }}
+      name="Leaderboard"
+      component={Leaderboard}
     />
     <Stack.Screen
       options={{

@@ -3,14 +3,14 @@ import { doc, getFirestore, getDoc } from 'firebase/firestore';
 
 const db = getFirestore(app);
 
-const adminCheck = async () => {
+const pointsCheck = async () => {
     const userId = await waitForUserId();
     const userDoc = await getDoc(doc(db, `users/${userId}`));
   
-    if (userDoc.data() === undefined) return false;
-    const userRole = userDoc.data().role;
+    if (userDoc.data() === undefined) return null;
+    const points = userDoc.data().points;
   
-    return userRole === 'admin';
+    return points;
 }
 
 async function waitForUserId() {
@@ -41,4 +41,4 @@ async function waitForUserId() {
     }
 }
 
-export default adminCheck;
+export default pointsCheck;

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Text,
   View,
@@ -16,6 +16,7 @@ import PlanetLogo from '../assets/PlanetLogo.png';
 import CustomButton from '../components/customButton';
 import {auth} from '../navigation/firebase';
 import {signOut} from 'firebase/auth';
+import pointsCheck from '../components/PointsCheck';
 
 function DashboardScreen({ navigation }) {
   const handleSignOut = async () => {
@@ -24,6 +25,19 @@ function DashboardScreen({ navigation }) {
   };
 
   const {height} = useWindowDimensions();
+
+  const [points, setPoints] = useState(null);
+
+  useEffect(() => {
+    const checkPoints = async () => {
+      const _points = await pointsCheck();
+      setPoints(_points ? _points : 0);
+    };
+  
+    setInterval(() => {
+      checkPoints();
+    }, 1000);
+  }, []);
 
   return (
     <Screen>
@@ -56,13 +70,13 @@ function DashboardScreen({ navigation }) {
       <View style={styles.paddedBox}>
         <View style={styles.rankLogoBox}>
           <TouchableWithoutFeedback
-          onPress={() => navigation.navigate('Badges')}>
+          onPress={() => navigation.navigate('Leaderboard')}>
             <Image source={RankLogo} style={styles.image}/>
           </TouchableWithoutFeedback>
         </View>
         <View style={styles.rankLogoText}>
           <Text style={styles.rank}>{'Rank 125'}</Text>
-          <Text style={styles.points}>{'1800 Points'}</Text>
+          <Text style={styles.points}>{points + ' Points'}</Text>
         </View>
       </View>
       <View style={styles.badgeAndPlanet}>
