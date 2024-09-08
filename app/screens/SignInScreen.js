@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, Image } from 'react-native';
-
+import { View, StyleSheet, Image, Alert } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import AppForm from '../components/AppForm';
 import AppFormField from '../components/AppFormField';
 import CustomButton from '../components/customButton';
@@ -9,7 +9,6 @@ import Screen from '../components/Screen';
 import SubmitButton from '../components/submitButton';
 import { auth } from '../navigation/firebase';
 import { onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
-
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
@@ -17,13 +16,31 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required().min(6).label('Password'),
 });
 
-function SignInScreen({ navigation }) {
+function SignInScreen({ navigation }) { 
   const [user, setUser] = useState({});
+  const [savedEmail, setSavedEmail] = useState('');
+
+  useEffect(() => {
+    
+    const loadSavedEmail = async () => {
+      try {
+        const email = await AsyncStorage.getItem('savedEmail');
+        if (email !== null) {
+          setSavedEmail(email); 
+        }
+      } catch (error) {
+        console.log('Failed to load email:', error);
+      }
+    };
+    loadSavedEmail();
+  }, []);
+
   onAuthStateChanged(auth, (user) => {
     if (user) {
       navigation.navigate('AppNavigator');
     }
   });
+
   const handleSignIn = async (email, password) => {
     try {
       const userCredential = await signInWithEmailAndPassword(
@@ -32,6 +49,9 @@ function SignInScreen({ navigation }) {
         password
       );
       const user = userCredential.user;
+      
+      await AsyncStorage.setItem('savedEmail', email);
+      Alert.alert('Success', 'Email saved successfully');
     } catch (error) {
       console.log(error.message);
     }
@@ -44,7 +64,7 @@ function SignInScreen({ navigation }) {
       </View>
       <View style={styles.container}>
         <AppForm
-          initialValues={{ email: '', password: '' }}
+          initialValues={{ email: savedEmail, password: '' }} // Pre-fill the email field with saved email
           onSubmit={({ email, password }) => handleSignIn(email, password)}
           validationSchema={validationSchema}
         >
